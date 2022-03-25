@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>vscode - 快捷鍵、主題、extension 紀錄</title>
+  
+  <link rel="canonical" href="https://aleetsaiya.github.io/2022/01/10/vscode-%E5%BF%AB%E6%8D%B7%E9%8D%B5%E3%80%81%E4%B8%BB%E9%A1%8C%E3%80%81extension-%E7%B4%80%E9%8C%84/">
+  
+  <meta name="description" content="快捷鍵 ctrl + D &amp;gt; 選擇當前文字 alt + 滑鼠點擊 &amp;gt; 一次操作多個地方 shift + alt + 滑鼠拖曳 &amp;gt; 一次操作多個地方 shft + alt + ↓ &amp;gt; 複製一行 ctrl + shft + K &amp;gt; 刪除一行 ctrl + X &amp;gt; 剪下">
+  
+  
+  <meta name="author" content="Alee Tsai">
+  
+  
+  
+  <meta property="og:site_name" content="Coding Blog" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="vscode - 快捷鍵、主題、extension 紀錄" />
+  
+  <meta property="og:description" content="快捷鍵 ctrl + D &amp;gt; 選擇當前文字 alt + 滑鼠點擊 &amp;gt; 一次操作多個地方 shift + alt + 滑鼠拖曳 &amp;gt; 一次操作多個地方 shft + alt + ↓ &amp;gt; 複製一行 ctrl + shft + K &amp;gt; 刪除一行 ctrl + X &amp;gt; 剪下">
+  
+  <meta property="og:url" content="https://aleetsaiya.github.io/2022/01/10/vscode-%E5%BF%AB%E6%8D%B7%E9%8D%B5%E3%80%81%E4%B8%BB%E9%A1%8C%E3%80%81extension-%E7%B4%80%E9%8C%84/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="vscode - 快捷鍵、主題、extension 紀錄">
+  
+  <meta name="twitter:description" content="快捷鍵 ctrl + D &amp;gt; 選擇當前文字 alt + 滑鼠點擊 &amp;gt; 一次操作多個地方 shift + alt + 滑鼠拖曳 &amp;gt; 一次操作多個地方 shft + alt + ↓ &amp;gt; 複製一行 ctrl + shft + K &amp;gt; 刪除一行 ctrl + X &amp;gt; 剪下">
+  
+  
+  
+  
+  <meta name="twitter:url" content="https://aleetsaiya.github.io/2022/01/10/vscode-%E5%BF%AB%E6%8D%B7%E9%8D%B5%E3%80%81%E4%B8%BB%E9%A1%8C%E3%80%81extension-%E7%B4%80%E9%8C%84/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi there!
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/Works" class="ml">Works</a>
+          
+        
+          
+          <a href="/About" class="ml">About</a>
+          
+        
+        
+          
+            <a href="mailto:aleetsaiya@gmail.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>vscode - 快捷鍵、主題、extension 紀錄</h2>
+
+  <h2 id="快捷鍵"><a href="#快捷鍵" class="headerlink" title="快捷鍵"></a>快捷鍵</h2><ul>
+<li><code>ctrl + D</code> &gt; 選擇當前文字</li>
+<li><code>alt + 滑鼠點擊</code> &gt; 一次操作多個地方</li>
+<li><code>shift + alt + 滑鼠拖曳</code> &gt; 一次操作多個地方</li>
+<li><code>shft + alt + ↓</code> &gt; 複製一行</li>
+<li><code>ctrl + shft + K</code> &gt; 刪除一行</li>
+<li><code>ctrl + X</code> &gt; 剪下一行</li>
+<li><code>li*3</code> &gt; 一次建立3個<code>li</code></li>
+<li><code>ctrl + shft + R</code> &gt; Refactor ，將程式碼打包成 function</li>
+</ul>
+<h2 id="主題"><a href="#主題" class="headerlink" title="主題"></a>主題</h2><ul>
+<li><em>Night owl</em> : 熬夜仔深色系主題，focus 的地方很清楚，用起來蠻舒服的，也是我目前在使用的主題。</li>
+<li><em>Ayu Mirage</em> : Mosh 推薦的主題，背景色相較 Night owl 淡了一點，可是整體配色很和諧。</li>
+</ul>
+<h2 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h2><p><em><strong>colorize</strong></em><br>能夠將 RGB、HSL 代表的顏色，其顏色直接顯示在 code 裡面。</p>
+<p><em><strong>material icon theme</strong></em><br>讓 file name 前面，顯示檔案類型對應的 icon。</p>
+<p><em><strong>eslint</strong></em><br>透過它能夠直接在 vscode 中檢查程式碼是否有符合 eslint 規則。</p>
+<p>使用 npm 下載 eslint:</p>
+<ul>
+<li>下載 eslint: <code>npm install eslint --save-dev</code></li>
+<li>在 <code>package.json</code> 的 script 中加入以下指令: (備註省略)<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 初始化 eslint</span>
+  <span class="token property">"eslintInit"</span><span class="token operator">:</span> <span class="token string">"eslint --init"</span><span class="token punctuation">,</span>
+  <span class="token comment">// 使用 eslint 檢查程式碼</span>
+  <span class="token comment">//  --ext 的意思是指定哪些檔案的意思</span>
+  <span class="token property">"lint-check"</span><span class="token operator">:</span> <span class="token string">"eslint --ext .js,.jsx src/component/"</span><span class="token punctuation">,</span>
+  <span class="token comment">// 使用自動修補程式碼</span>
+  <span class="token property">"lint-fix"</span><span class="token operator">:</span> <span class="token string">"eslint --fix --ext .js,.jsx src/component/"</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<p><em><strong>prettier</strong></em><br>提供能夠讓程式碼更好看的功能。</p>
+<p>存檔後自動使用 prettier: </p>
+<ul>
+<li>於 vscode 中 file &gt; preferences &gt; [search: formatonsave]，然後勾起來</li>
+<li>於 vscode 中按 <code>ctrl + p</code>，然後輸入: <code>&gt;format document with</code>，將預設改為 prettier</li>
+</ul>
+<p><em><strong>prettier eslint</strong></em><br>參考: <a target="_blank" rel="noopener" href="https://wcc723.github.io/development/2021/04/11/vscode-eslint-prettier/">VSCode Prettier 整合 ESLint 自動排版</a><br>如果要結合 eslint 以及 prettier，先從 vscode 下載 <code>prettier eslint</code>，並將 <code>format document with</code> 設定預設改成 _prettier eslint_，再透過 npm 下載 <code>eslint</code>, <code>prettier</code> 以及 <code>prettier eslint</code> 。</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">npm install --save-dev eslint prettier prettier-eslint<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><em><strong>Discord Presence</strong></em><br>讓 discord 顯示正在 coding 的 rich presence</p>
+<p><em><strong>Live Server</strong></em><br>Launch a development local Server with live reload feature for static &amp; dynamic pages</p>
+<p><em><strong>Git Graph</strong></em><br>讓我們能直接在 vscode 裡面就看到分支圖</p>
+
+  <p> — Jan 10, 2022</p>
+  
+
+
+        </div>
+        <div class="row mt-2">
+  <h3>Search</h3>
+  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
+  <div style="margin-top: 1.5rem;">
+    <ul id="result"></ul>
+  </div>
+</div>
+        <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Taiwan" target="_blank" rel="noreferrer">Taiwan</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/aleetsaiya" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+      <a class="ml-0 footer-link icon" href="https://www.linkedin.com/in/alee-tsai/" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="LinkedIn">
+        <svg class="linkedin svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>

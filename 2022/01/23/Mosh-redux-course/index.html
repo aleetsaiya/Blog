@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>Mosh redux course</title>
+  
+  <link rel="canonical" href="https://aleetsaiya.github.io/2022/01/23/Mosh-redux-course/">
+  
+  <meta name="description" content="內文提到的程式 &amp;#x2F; 檔案紀錄在 github 內: link  目錄 redux 架構    dispatch, subscribe, getState   Extensison   Multiple Reducers   Middleware   Testing redux applic">
+  
+  
+  <meta name="author" content="Alee Tsai">
+  
+  
+  
+  <meta property="og:site_name" content="Coding Blog" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Mosh redux course" />
+  
+  <meta property="og:description" content="內文提到的程式 &amp;#x2F; 檔案紀錄在 github 內: link  目錄 redux 架構    dispatch, subscribe, getState   Extensison   Multiple Reducers   Middleware   Testing redux applic">
+  
+  <meta property="og:url" content="https://aleetsaiya.github.io/2022/01/23/Mosh-redux-course/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mosh redux course">
+  
+  <meta name="twitter:description" content="內文提到的程式 &amp;#x2F; 檔案紀錄在 github 內: link  目錄 redux 架構    dispatch, subscribe, getState   Extensison   Multiple Reducers   Middleware   Testing redux applic">
+  
+  
+  
+  
+  <meta name="twitter:url" content="https://aleetsaiya.github.io/2022/01/23/Mosh-redux-course/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi there!
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/Works" class="ml">Works</a>
+          
+        
+          
+          <a href="/About" class="ml">About</a>
+          
+        
+        
+          
+            <a href="mailto:aleetsaiya@gmail.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>Mosh redux course</h2>
+
+  <blockquote>
+<p>內文提到的程式 &#x2F; 檔案紀錄在 github 內: <a target="_blank" rel="noopener" href="https://github.com/aleetsaiya/mosh-redux-starter">link</a></p>
+</blockquote>
+<h2 id="目錄"><a href="#目錄" class="headerlink" title="目錄"></a>目錄</h2><ul>
+<li><a href="#redux-%E6%9E%B6%E6%A7%8B">redux 架構</a>   </li>
+<li><a href="#dispatch-subscribe-getstate">dispatch, subscribe, getState</a>  </li>
+<li><a href="#extension">Extensison</a>  </li>
+<li><a href="#multiple-reducers">Multiple Reducers</a>  </li>
+<li><a href="#middleware">Middleware</a>  </li>
+<li><a href="#testing-redux-application">Testing redux application</a></li>
+</ul>
+<h2 id="redux-架構"><a href="#redux-架構" class="headerlink" title="redux 架構"></a>redux 架構</h2><ol>
+<li>建立 reducer，需要 currentState, action 作為參數，根據不同的 action types 來更新 store 中的 state 並回傳</li>
+<li>建立 store，需要 reducer 作為參數，為主程式接口，負責處理主程式發出的 <code>dispatch</code>, <code>subscribe</code>, <code>getState</code> 等動作</li>
+<li>主程式對 store 進行 <code>dispatch</code>, <code>subscribe</code>, <code>getState</code> 等動作</li>
+</ol>
+<h2 id="dispatch-subscribe-getState"><a href="#dispatch-subscribe-getState" class="headerlink" title="dispatch, subscribe, getState"></a>dispatch, subscribe, getState</h2><p>dispatch: 根據不同的 action 來更新 store 中的 state<br>subscribe: 參數為一 <code>function</code>，代表當 store 中的 state 更新時，需要做的事情<br>getState: 獲得當前 store 中的 state</p>
+<h2 id="檔案"><a href="#檔案" class="headerlink" title="檔案:"></a>檔案:</h2><blockquote>
+<p>課堂中各檔案的意思</p>
+</blockquote>
+<h3 id="src-folder"><a href="#src-folder" class="headerlink" title="src folder:"></a>src folder:</h3><ul>
+<li><code>index.js</code>: 發出 dispatch, subscribe, getState 的檔案</li>
+<li><code>reducer.js</code>: 建立 reducer</li>
+<li><code>store.js</code>: 建立 store</li>
+<li><code>customStore.js</code>: 親手建立簡單版的 store 內部</li>
+<li><code>actionTypes.js</code>: 統一管理 reducer 處理的各種 action type，為 actionTypes 的接口</li>
+<li><code>actionCreater.js</code>: 協助送出 dispatch 的細節</li>
+</ul>
+<h3 id="duck-pattern"><a href="#duck-pattern" class="headerlink" title="duck-pattern"></a>duck-pattern</h3><p>使用 duck-pattern 的結構時，會把 actionCreater, actionTypes, reducer 三個檔案合併放在同一個檔案裡</p>
+<pre class="line-numbers language-diff" data-language="diff"><code class="language-diff">src folder:
+<span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line"> bugs
+</span><span class="token prefix deleted">-</span><span class="token line"> |-- actionTypes.js
+</span><span class="token prefix deleted">-</span><span class="token line"> |-- actionCreater.js
+</span><span class="token prefix deleted">-</span><span class="token line"> |-- reducer.js
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line"> bugs.js</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h2><blockquote>
+<p>介紹到的 redux extension</p>
+</blockquote>
+<h3 id="Redux-DevTools-link"><a href="#Redux-DevTools-link" class="headerlink" title="Redux DevTools: link"></a>Redux DevTools: <a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=zh-TW">link</a></h3><p>使用時要在 create store 加上參數:</p>
+<pre class="line-numbers language-diff" data-language="diff"><code class="language-diff">const store = createStore(
+<span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> reducer,
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">  window.__REDUX_DEVTOOLS_EXTENSION__ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__()
+</span></span>);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>參考: <a target="_blank" rel="noopener" href="https://github.com/zalmoxisus/redux-devtools-extension#1-with-redux">redux-devtools-extension</a></p>
+<p>Redux Toolkit:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> @reduxjs/toolkit<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>使用 redux toolkit 可以幫助我們建立之前手動建立的 <code>reducer</code>、<code>actionTypes``、actionCreater</code> 以及 <code>createStore</code>。</p>
+<p><code>createStore</code> :</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> configureStore <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"@reduxjs/toolkit"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> reducer <span class="token keyword">from</span> <span class="token string">"./reducer"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// when use configureStore, we don't need to check redux devTool extension</span>
+  <span class="token keyword">return</span> <span class="token function">configureStore</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> reducer <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">  
+
+原本的 actionTypes + actionCreater > </span><span class="token template-punctuation string">`</span></span>createAction<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">: 
+</span><span class="token template-punctuation string">`</span></span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span>js
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> createAction<span class="token punctuation">,</span> createReducer <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"@reduxjs/toolkit"</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Action Creators + Action Types</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> bugAdded <span class="token operator">=</span> <span class="token function">createAction</span><span class="token punctuation">(</span><span class="token string">"bugAdded"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> bugResolved <span class="token operator">=</span> <span class="token function">createAction</span><span class="token punctuation">(</span><span class="token string">"bugResolved"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> bugRemoved <span class="token operator">=</span> <span class="token function">createAction</span><span class="token punctuation">(</span><span class="token string">"bugRemoved"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>createActions</code> 會根據我們傳入的 <code>typeName</code> 回傳一個 function，執行這個 function 並傳入 <code>argument</code> 會收到</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">type</span><span class="token operator">:</span> typeName<span class="token punctuation">,</span>
+  <span class="token literal-property property">payload</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// your argument</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>原本的 reducer &gt; <code>createReducer</code>:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">createReducer</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// actions: function (event => event handler)</span>
+  <span class="token comment">// added</span>
+  <span class="token punctuation">[</span>bugAdded<span class="token punctuation">.</span>type<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">bugs<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    bugs<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token operator">++</span>lastId<span class="token punctuation">,</span>
+      <span class="token literal-property property">description</span><span class="token operator">:</span> action<span class="token punctuation">.</span>payload<span class="token punctuation">.</span>description<span class="token punctuation">,</span>
+      <span class="token literal-property property">resolved</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token comment">// resolved</span>
+  <span class="token punctuation">[</span>bugResolved<span class="token punctuation">.</span>type<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">bugs<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> index <span class="token operator">=</span> bugs<span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">bug</span><span class="token punctuation">)</span> <span class="token operator">=></span> bug<span class="token punctuation">.</span>id <span class="token operator">===</span> action<span class="token punctuation">.</span>payload<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    bugs<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>resolved <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token comment">// removed</span>
+  <span class="token punctuation">[</span>bugRemoved<span class="token punctuation">.</span>type<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">bugs<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> index <span class="token operator">=</span> bugs<span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">bug</span><span class="token punctuation">)</span> <span class="token operator">=></span> bug<span class="token punctuation">.</span>id <span class="token operator">===</span> action<span class="token punctuation">.</span>payload<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    bugs<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>也可以將三個合併再一起寫 (<code>createAction</code> + <code>createReducer</code>) &gt; <code>createSlice</code>:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> createSlice <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"@reduxjs/toolkit"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> lastId <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> slice <span class="token operator">=</span> <span class="token function">createSlice</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"bugs"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">initialState</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">reducers</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// actions => action handlers</span>
+    <span class="token function-variable function">bugAdded</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">bugs<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+      bugs<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token operator">++</span>lastId<span class="token punctuation">,</span>
+        <span class="token literal-property property">description</span><span class="token operator">:</span> action<span class="token punctuation">.</span>payload<span class="token punctuation">.</span>description<span class="token punctuation">,</span>
+        <span class="token literal-property property">resolved</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">bugResolved</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">bugs<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">const</span> index <span class="token operator">=</span> bugs<span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">bug</span><span class="token punctuation">)</span> <span class="token operator">=></span> bug<span class="token punctuation">.</span>id <span class="token operator">===</span> action<span class="token punctuation">.</span>payload<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      bugs<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>resolved <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">bugRemoved</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">bugs<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">const</span> index <span class="token operator">=</span> bugs<span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">bug</span><span class="token punctuation">)</span> <span class="token operator">=></span> bug<span class="token punctuation">.</span>id <span class="token operator">===</span> action<span class="token punctuation">.</span>payload<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      bugs<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> bugAdded<span class="token punctuation">,</span> bugResolved<span class="token punctuation">,</span> bugRemoved <span class="token punctuation">&#125;</span> <span class="token operator">=</span> slice<span class="token punctuation">.</span>actions<span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> slice<span class="token punctuation">.</span>reducer<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Multiple-Reducers"><a href="#Multiple-Reducers" class="headerlink" title="Multiple Reducers"></a>Multiple Reducers</h2><img width="573" alt="Reducer" src="https://user-images.githubusercontent.com/67775387/149883054-0b5d39c6-8cc6-468d-b60d-4d6c5b033882.png">
+
+<h3 id="combineRedcers"><a href="#combineRedcers" class="headerlink" title="combineRedcers"></a>combineRedcers</h3><p>建立多個 reducer 管理不同的 state，然後最後再將這些 reducer <code>combine</code></p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> combineReducers <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"redux"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> projectsReducer <span class="token keyword">from</span> <span class="token string">"./projects"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> bugsReducer <span class="token keyword">from</span> <span class="token string">"./bugs"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">bugs</span><span class="token operator">:</span> bugsReducer<span class="token punctuation">,</span>
+  <span class="token literal-property property">projects</span><span class="token operator">:</span> projectsReducer<span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="selector"><a href="#selector" class="headerlink" title="selector"></a>selector</h3><p>可以在每個 <code>reducer slice</code> 的檔案中增加 selector，幫助我們選擇特定的 state</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// Selector</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">getUnresolvedBugs</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">state</span><span class="token punctuation">)</span> <span class="token operator">=></span>
+  state<span class="token punctuation">.</span>entities<span class="token punctuation">.</span>bugs<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">bug</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">!</span>bug<span class="token punctuation">.</span>resolved<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>利用套件 <code>reselect</code> 可以讓我們將 output 儲存起來，如果下一次 input 沒有變動的話，就使用上一次儲存的結果回傳</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> createSelector <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"reselect"</span><span class="token punctuation">;</span>
+<span class="token comment">// Memoization</span>
+<span class="token comment">// when the input not change, use the output from the cache (do not recalculate)</span>
+<span class="token comment">// here we use "reselect" (npm install reselect)</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> getUnresolvedBugs <span class="token operator">=</span> <span class="token function">createSelector</span><span class="token punctuation">(</span>
+  <span class="token punctuation">(</span><span class="token parameter">state</span><span class="token punctuation">)</span> <span class="token operator">=></span> state<span class="token punctuation">.</span>entities<span class="token punctuation">.</span>bugs<span class="token punctuation">,</span> <span class="token comment">// output of this function will pass to the next function</span>
+  <span class="token punctuation">(</span><span class="token parameter">bugs</span><span class="token punctuation">)</span> <span class="token operator">=></span> bugs<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">bug</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">!</span>bugs<span class="token punctuation">.</span>resolved<span class="token punctuation">)</span> <span class="token comment">// if the parameter "bugs" do not change, the bug filter won't execute, will use the result from the cache</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h2><p>middleware 是我們從 dispatch 到 root reducer 的過程中所添加的程式</p>
+<h3 id="create-Middleware"><a href="#create-Middleware" class="headerlink" title="create Middleware"></a>create Middleware</h3><ol>
+<li>建立一個 middleware 資料夾 (使用這個名稱命名資料夾，資料夾 icon 會是不一樣的 ⚡)</li>
+<li>建立 middleware 檔案</li>
+</ol>
+<p>使用 <code>currying</code> 表示接收三個參數 ( <code>store</code>, <code>next</code>, <code>action</code> ) 的函數</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// next: next is the reference to the "next middleware function",</span>
+<span class="token comment">// if this's the only middleware function we have, next is going</span>
+<span class="token comment">// to be the reducer that is going to handle this action</span>
+<span class="token keyword">const</span> <span class="token function-variable function">logger</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">store</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">action</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"store"</span><span class="token punctuation">,</span> store<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"next"</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"action"</span><span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> logger<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li>於 createStore 的檔案內，增加 middleware (middleware: array of middleware)</li>
+</ol>
+<pre class="line-numbers language-diff" data-language="diff"><code class="language-diff">import &#123; configureStore &#125; from "@reduxjs/toolkit";
+import reducer from "./reducer";
+<span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line"> import logger from "./middleware/logger";
+</span></span>
+export default function () &#123;
+<span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> return configureStore(
+</span><span class="token prefix unchanged"> </span><span class="token line">   &#123; reducer, 
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">      middleware: [logger] 
+</span></span><span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line">   &#125;
+</span><span class="token prefix unchanged"> </span><span class="token line"> );
+</span></span>&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>如果要在 middleware 傳入參數的話 (除了 store, next, action 的參數)，在 store 前面再加一個 param，並在 createStore 中的 middleware 傳入參數</p>
+</blockquote>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// in middleware file</span>
+<span class="token keyword">const</span> <span class="token function-variable function">logger</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">param</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">store</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">action</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>param<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> logger<span class="token punctuation">;</span>
+
+<span class="token comment">// in createStore file</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> configureStore <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"@reduxjs/toolkit"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> reducer <span class="token keyword">from</span> <span class="token string">"./reducer"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> logger <span class="token keyword">from</span> <span class="token string">"./middleware/logger"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token function">configureStore</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> reducer<span class="token punctuation">,</span> <span class="token literal-property property">middleware</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function">logger</span><span class="token punctuation">(</span><span class="token string">"my param"</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Thunk-middleware"><a href="#Thunk-middleware" class="headerlink" title="Thunk middleware"></a>Thunk middleware</h3><p>平常我們 <code>dispatch</code> 時，我們只能 dispatch 一個 object，而 <code>thunk middleware</code> 就是透過 middleware 使我們達成 **”不僅可以 dispatch object，還可以 dispatch 一個 function”**。通常來說我們在製作一個 thunk middleware 時會需要傳 2 個參數，分別是 <code>store</code> 以及 <code>getState</code>，底下為自製一個 thunk middleware:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// middleware/func.js</span>
+<span class="token keyword">const</span> <span class="token function-variable function">func</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">store</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">action</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 如果 action type 是 function 的話，就執行這個 function 並傳入 dispaych 以及 getState</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> action <span class="token operator">===</span> <span class="token string">"function"</span><span class="token punctuation">)</span> <span class="token function">action</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span>dispatch<span class="token punctuation">,</span> store<span class="token punctuation">.</span>getState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 不是 function 就繼續送往下一個 middleware</span>
+  <span class="token keyword">else</span> <span class="token function">next</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> func<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>製作完 thunk middleware 後，將他加入至 store 中</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// store/configureStore.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> configureStore <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"@reduxjs/toolkit"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> reducer <span class="token keyword">from</span> <span class="token string">"./reducer"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> func <span class="token keyword">from</span> <span class="token string">"./middleware/func"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token function">configureStore</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> reducer<span class="token punctuation">,</span> <span class="token literal-property property">middleware</span><span class="token operator">:</span> <span class="token punctuation">[</span>func<span class="token punctuation">]</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>除了上面自己做一個 thunk middleware，我們可以使用 <a target="_blank" rel="noopener" href="https://github.com/reduxjs/redux-thunk">redux-thun</a>。如果我們專案是使用 <code>redux toolkit</code> 的話，只需要在 configureStore 中的 middleware 內加入 <code>...getDefaultMiddleware()</code>，就可以使用他們做好的 thunk middleware。</p>
+<pre class="line-numbers language-diff" data-language="diff"><code class="language-diff">// store/configureStore.js
+import &#123; configureStore, getDefaultMiddleware &#125; from "@reduxjs/toolkit";
+import reducer from "./reducer";
+<span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line"> import func from "./middleware/func";
+</span></span>
+export default function () &#123;
+<span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> return configureStore(&#123;
+</span><span class="token prefix unchanged"> </span><span class="token line">   reducer,
+</span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">    middleware: [func]
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">    middleware: [...getDefaultMiddleware()],
+</span></span><span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> &#125;);
+</span></span>&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>More about thunk: <a target="_blank" rel="noopener" href="https://medium.com/frochu/%E9%80%81%E8%AE%93%E4%BD%A0%E7%9A%84action%E8%83%BD%E4%BD%9C%E6%9B%B4%E5%A4%9A-redux-thunk-c07bc5488e48">讓你的Action能作更多 — Redux-Thunk</a></p>
+<h3 id="combine-with-API"><a href="#combine-with-API" class="headerlink" title="combine with API"></a>combine with API</h3><p>將 middleware 結合發送 api:</p>
+<ol>
+<li>建立 action ( <code>createAction</code> ) 負責統一處理 action type:</li>
+</ol>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// store/api.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> createAction <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"@reduxjs/toolkit"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> apiRequest <span class="token operator">=</span> <span class="token function">createAction</span><span class="token punctuation">(</span><span class="token string">"apiRequest"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 送出 api request 的 action</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> apiCallSuccess <span class="token operator">=</span> <span class="token function">createAction</span><span class="token punctuation">(</span><span class="token string">"apiCallSuccess"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// request success 的 action</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> apiCallFailed <span class="token operator">=</span> <span class="token function">createAction</span><span class="token punctuation">(</span><span class="token string">"apiCallFailed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// request failed 的 action</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>建立 middleware，用來處理當我們從主程式收到 <code>api dispatch</code> 時要做的事情</li>
+</ol>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// store/middleware/api.js</span>
+<span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">"axios"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> actions <span class="token keyword">from</span> <span class="token string">"../api"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">api</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">store</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">action</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 如果送出的 action type 不是 apiRequest，那就送至下一個 middleware 並跳出</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type <span class="token operator">!==</span> actions<span class="token punctuation">.</span>apiRequest<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">next</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token comment">// action type 是 apiRequest，把接收到的 action payload 提取出來</span>
+  <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> url<span class="token punctuation">,</span> method<span class="token punctuation">,</span> data<span class="token punctuation">,</span> onSuccess<span class="token punctuation">,</span> onError <span class="token punctuation">&#125;</span> <span class="token operator">=</span> action<span class="token punctuation">.</span>payload<span class="token punctuation">;</span>
+  <span class="token comment">// 將原 dispatch (apiRequest) 繼續送往下一個 middleware / reducer</span>
+  <span class="token function">next</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 根據收到的 action payload，送出 request</span>
+    <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> axios<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">baseURL</span><span class="token operator">:</span> <span class="token string">"http://localhost:9001/api"</span><span class="token punctuation">,</span>
+      url<span class="token punctuation">,</span>
+      method<span class="token punctuation">,</span>
+      data<span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 如果收到的 action payload 中沒特別設定 request success 的 action type 的話，就 dispatch 預設的 success action type</span>
+    store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span>actions<span class="token punctuation">.</span><span class="token function">apiCallSuccess</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 如果有特別設定 request success 的 action type，就依內容送出 dispatch</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>onSuccess<span class="token punctuation">)</span> store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">type</span><span class="token operator">:</span> onSuccess<span class="token punctuation">,</span> <span class="token literal-property property">payload</span><span class="token operator">:</span> response<span class="token punctuation">.</span>data <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// request 失敗時，送出預設 error dispatch</span>
+    store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span>actions<span class="token punctuation">.</span><span class="token function">apiCallFailed</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 有特別設定 request error 的 action type，依內容送出 dispatch</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>onError<span class="token punctuation">)</span> store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">type</span><span class="token operator">:</span> onError<span class="token punctuation">,</span> <span class="token literal-property property">payload</span><span class="token operator">:</span> error <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> api<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li>將 middleware 加入至 store 內</li>
+</ol>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> configureStore <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"@reduxjs/toolkit"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> reducer <span class="token keyword">from</span> <span class="token string">"./reducer"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> toastify <span class="token keyword">from</span> <span class="token string">"./middleware/toastify"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> api <span class="token keyword">from</span> <span class="token string">"./middleware/api"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// when use configureStore, we don't need to check redux devTool extension</span>
+  <span class="token keyword">return</span> <span class="token function">configureStore</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> reducer<span class="token punctuation">,</span> <span class="token literal-property property">middleware</span><span class="token operator">:</span> <span class="token punctuation">[</span>toastify<span class="token punctuation">,</span> api<span class="token punctuation">]</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 加入 api middleware</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="4">
+<li>主程式送出 api dispatch</li>
+</ol>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> configureStore <span class="token keyword">from</span> <span class="token string">"./store/configureStore"</span><span class="token punctuation">;</span>
+<span class="token comment">// 匯入統一接口的 api action type</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> actions <span class="token keyword">from</span> <span class="token string">"./store/api"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">configureStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span>
+  actions<span class="token punctuation">.</span><span class="token function">apiRequest</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">url</span><span class="token operator">:</span> <span class="token string">"/bugs"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 上面的程式碼拆解如下:</span>
+<span class="token comment">// store.dispatch(</span>
+<span class="token comment">//   &#123;</span>
+<span class="token comment">//     type: apiRequest.type,</span>
+<span class="token comment">//     payload: &#123;</span>
+<span class="token comment">//       url: "/bugs"</span>
+<span class="token comment">//     &#125;</span>
+<span class="token comment">//   &#125;</span>
+<span class="token comment">// )</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>( 後續程式碼還有再增加 loading 以及 cache feature，完整版直接看 <code>src folder</code> 內程式 )</p>
+<h2 id="Testing-Redux-Application"><a href="#Testing-Redux-Application" class="headerlink" title="Testing Redux Application"></a>Testing Redux Application</h2><h3 id="Automated-Testing"><a href="#Automated-Testing" class="headerlink" title="Automated Testing"></a>Automated Testing</h3><ul>
+<li>Uni tests</li>
+<li>Integration tests</li>
+<li>End-to-end tests</li>
+</ul>
+<p><code>Uni test</code>: test the application without its external dependencies. (fast)<br><code>Integration test</code>: slower than uni test, but give us more confidence.<br><code>End-to-end test</code>: the most slowest, simple break the UI will break severals end-to-end test.  </p>
+<h3 id="Use-Extension"><a href="#Use-Extension" class="headerlink" title="Use Extension"></a>Use Extension</h3><ol>
+<li>install</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> jest @types/jest @babel/core @babel/preset-env babel-jest --save-dev<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="2">
+<li>create <code>babel.config.json</code> in root folder (cool file icon ⚡)</li>
+</ol>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// in babel.config.json</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token string-property property">"presets"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"@babel/preset-env"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string-property property">"plugins"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li><p>create <code>tests</code> folder to store <code>spec</code> file</p>
+</li>
+<li><p>create <code>testname.spec.js</code> in test folder ( 在名稱裡面有 <code>spec</code> 的，通常來說是一個 test file )</p>
+</li>
+<li><p>在 package.json 加入:</p>
+</li>
+</ol>
+<pre class="line-numbers language-diff" data-language="diff"><code class="language-diff">"scripts": &#123;
+<span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> "start": "webpack-dev-server --config ./webpack.config.js",
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">  "test": "jest"
+</span></span>&#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="6">
+<li>執行 <code>npm run test</code></li>
+</ol>
+<p>( <code>npx jest --coverage</code> 會建立 coverage 資料夾，可以打開 <code>index.html</code> 看哪些檔案被測試涵蓋 )</p>
+<h3 id="create-test-file"><a href="#create-test-file" class="headerlink" title="create test file"></a>create test file</h3><p>常使用到的 function:</p>
+<ul>
+<li><code>describe</code> (name, fn): 一系列的測試，像是一個 folder 名叫 <code>name</code> 的感覺</li>
+<li><code>it</code> (name, fn): 一個名叫 <code>name</code> 測試</li>
+<li>expect(<code>thing</code>) 後面加 <code>toBe()</code>, <code>toHaveLength()</code>, <code>toEqual()</code>, <code>toContainEqual</code> 等</li>
+</ul>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> isEven <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"./math"</span><span class="token punctuation">;</span>
+
+<span class="token comment">// define a group of test</span>
+<span class="token function">describe</span><span class="token punctuation">(</span><span class="token string">"isEven"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// define a test: it (testName, testFunction)</span>
+  <span class="token function">it</span><span class="token punctuation">(</span><span class="token string">"sould return true if given an even number"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Function under test (SUT)</span>
+    <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token function">isEven</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">expect</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toEqual</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">it</span><span class="token punctuation">(</span><span class="token string">"sould return false if given an odd number"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token function">isEven</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">expect</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toEqual</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Unit-test-solitary-test-amp-amp-social-test"><a href="#Unit-test-solitary-test-amp-amp-social-test" class="headerlink" title="Unit test: solitary test &amp;&amp; social test"></a>Unit test: solitary test &amp;&amp; social test</h3><p>solitary test 測試單一檔案是否有正常運作，social test 測試多個檔案合起來有沒有正常，而這些都屬於 unit test</p>
+<blockquote>
+<p>solitary test 可能會因為太 detail，所以一個小改動 test 就出現錯誤</p>
+</blockquote>
+<p>solitary test demo: <a target="_blank" rel="noopener" href="https://github.com/aleetsaiya/mosh-redux-starter/blob/master/demo/solitaryTest.md">link</a>  </p>
+<p>social test demo: <a target="_blank" rel="noopener" href="https://github.com/aleetsaiya/mosh-redux-starter/blob/master/demo/socialTest.md">link</a></p>
+<p>Testing File 最後完成版: <a target="_blank" rel="noopener" href="https://github.com/aleetsaiya/mosh-redux-starter/blob/master/src/store/tests/bugs.spec.js">link</a></p>
+
+  <p> — Jan 23, 2022</p>
+  
+
+
+        </div>
+        <div class="row mt-2">
+  <h3>Search</h3>
+  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
+  <div style="margin-top: 1.5rem;">
+    <ul id="result"></ul>
+  </div>
+</div>
+        <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Taiwan" target="_blank" rel="noreferrer">Taiwan</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/aleetsaiya" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+      <a class="ml-0 footer-link icon" href="https://www.linkedin.com/in/alee-tsai/" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="LinkedIn">
+        <svg class="linkedin svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>

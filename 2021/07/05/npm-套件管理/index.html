@@ -11,11 +11,11 @@
   <meta charset="utf-8">
 
   
-  <title>hexo 備份</title>
+  <title>npm 套件管理</title>
   
-  <link rel="canonical" href="https://aleetsaiya.github.io/2021/07/12/hexo%E5%82%99%E4%BB%BD/">
+  <link rel="canonical" href="https://aleetsaiya.github.io/2021/07/05/npm-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86/">
   
-  <meta name="description" content="本文參考 :Hexo備份至GitHub30 天精通 Git 版本控管 (25)：使用 GitHub 遠端儲存庫 - 觀念篇  步驟git init # 建立新分支 &#39;hexo&#39; 並切換至 &#39;hexo&#39; 分支   git checkout -b hexo git add . git commit -m">
+  <meta name="description" content="參考 : NPM Install 到底做了些什麼？node_modules 檔案結構 + 特性入門 從零開始: 使用NPM套件 解開npm安裝包npm install命令的疑惑,區分–save和–save-dev   介紹當我們在 python 中使用 pip 下載一個套件時，那些套件會存在我們的電">
   
   
   <meta name="author" content="Alee Tsai">
@@ -24,21 +24,21 @@
   
   <meta property="og:site_name" content="Coding Blog" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="hexo 備份" />
+  <meta property="og:title" content="npm 套件管理" />
   
-  <meta property="og:description" content="本文參考 :Hexo備份至GitHub30 天精通 Git 版本控管 (25)：使用 GitHub 遠端儲存庫 - 觀念篇  步驟git init # 建立新分支 &#39;hexo&#39; 並切換至 &#39;hexo&#39; 分支   git checkout -b hexo git add . git commit -m">
+  <meta property="og:description" content="參考 : NPM Install 到底做了些什麼？node_modules 檔案結構 + 特性入門 從零開始: 使用NPM套件 解開npm安裝包npm install命令的疑惑,區分–save和–save-dev   介紹當我們在 python 中使用 pip 下載一個套件時，那些套件會存在我們的電">
   
-  <meta property="og:url" content="https://aleetsaiya.github.io/2021/07/12/hexo%E5%82%99%E4%BB%BD/" />
+  <meta property="og:url" content="https://aleetsaiya.github.io/2021/07/05/npm-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="hexo 備份">
+  <meta name="twitter:title" content="npm 套件管理">
   
-  <meta name="twitter:description" content="本文參考 :Hexo備份至GitHub30 天精通 Git 版本控管 (25)：使用 GitHub 遠端儲存庫 - 觀念篇  步驟git init # 建立新分支 &#39;hexo&#39; 並切換至 &#39;hexo&#39; 分支   git checkout -b hexo git add . git commit -m">
-  
-  
+  <meta name="twitter:description" content="參考 : NPM Install 到底做了些什麼？node_modules 檔案結構 + 特性入門 從零開始: 使用NPM套件 解開npm安裝包npm install命令的疑惑,區分–save和–save-dev   介紹當我們在 python 中使用 pip 下載一個套件時，那些套件會存在我們的電">
   
   
-  <meta name="twitter:url" content="https://aleetsaiya.github.io/2021/07/12/hexo%E5%82%99%E4%BB%BD/" />
+  
+  
+  <meta name="twitter:url" content="https://aleetsaiya.github.io/2021/07/05/npm-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -195,36 +195,42 @@
 </div>
 
         <div class="trans">
-            <h2>hexo 備份</h2>
+            <h2>npm 套件管理</h2>
 
-  <p>本文參考 :<br><a target="_blank" rel="noopener" href="https://www.dazhuanlan.com/2019/09/24/5d89fc809d6bf/">Hexo備份至GitHub</a><br><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10140055">30 天精通 Git 版本控管 (25)：使用 GitHub 遠端儲存庫 - 觀念篇</a></p>
+  <h2 id="參考"><a href="#參考" class="headerlink" title="參考 :"></a>參考 :</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10191783">NPM Install 到底做了些什麼？node_modules 檔案結構 + 特性入門</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/html-test/%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B-%E4%BD%BF%E7%94%A8npm%E5%A5%97%E4%BB%B6-317beefdf182">從零開始: 使用NPM套件</a></li>
+<li><a target="_blank" rel="noopener" href="https://ppfocus.com/0/di8924d63.html">解開npm安裝包npm install命令的疑惑,區分–save和–save-dev</a></li>
+</ul>
 <hr>
-<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> init
-<span class="token comment"># 建立新分支 'hexo' 並切換至 'hexo' 分支  </span>
-<span class="token function">git</span> checkout -b hexo
-<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
-<span class="token function">git</span> commit -m <span class="token string">'init'</span>
-<span class="token function">git</span> remote <span class="token function">add</span> origin https://github.com/aleetsaiya/aleetsaiya.github.io
-<span class="token function">git</span> push -u origin hexo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><p>當我們在 python 中使用 pip 下載一個套件時，那些套件會存在我們的電腦上，所以之後只要在任何一個 python 檔中寫 <code>import</code> … 就可以直接使用那個套件了。而 npm 相較於 pip，他是把每個一個專案要使用的 lib 都裝在每個專案的 <code>node_modules</code> 底下，所以會出現”同一個套件下載很多次的情形”，而這樣也方便我們對不同專案使用不同的套件版本。</p>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ol>
+<li><code>npm init</code> 會建立 package.json，紀錄我們要使用的套件。</li>
+<li><code>npm install</code>  如果<code>install</code>後面沒加套件名稱的話， npm 會幫你把 package.json 上有寫然後你目前 node_modules 還沒下載的套件安裝下來。</li>
+<li><code>npm install bootstrap</code> 如果後面有加套件名稱 (像是 bootstrap) 的話，npm 會把你指定的套件安裝到 node_modules ，然後在 package.json 裡面記錄你剛剛安裝的套件。</li>
+</ol>
+<p>因為 node_modules 檔案很大所以通常來說不會放上去 github repository，所以如果有一天有一個人從不同台電腦 clone 我們的 repository 的話 (不會包含 node_modules) ，這時他可以輸入 <code>npm install</code>，就可以將紀錄在 package.json 上需要用到的套件下載下來到自己的 node_modules 裡。</p>
+<p><em>於 <code>npm install</code>後面加上參數 -g 的話不會將目標下載到 <code>node_modules</code> 裡面，而是會下載到我們自己的磁碟裡，<code>npm config get prefix</code>可以查看 global 下載到的位置</em> </p>
+<h3 id="scripts"><a href="#scripts" class="headerlink" title="scripts"></a>scripts</h3><p>在 package.json 檔案裡面，<code>scripts</code>欄位擺的的是平常我們會在 cmd 上打的指令，像是底下這段 scripts</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+<span class="token property">"compile:sass"</span><span class="token operator">:</span> <span class="token string">"node-sass sass/main.scss /css/style.css"</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p>這邊 <code>git push -u origin hexo</code> 設定 <code>-u</code> 的話，我們之後要 <code>push</code> 或是 <code>pull</code> 時就不用加後面的 <code>origin hexo</code> 了，只要打 : </p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">git pull
-git push<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>在 cmd 上輸入 <code>npm rum compile:sass</code> 的話，就等同於在 cmd 上輸入 <code>node-sass sass/main.scss /css/style.css</code>，意思是把 sass 資料夾裡面的 main.scss 編譯後存到 css 資料夾內的 style.css。</p>
+<p><em>於 node-sass 後面加上參數 -w 的話會於 cmd 持續追蹤是否有更新 main.scss</em> </p>
 
-<p>更多詳細的內容可以至參考文章看。</p>
-
-  <p> — Jul 12, 2021</p>
+  <p> — Jul 5, 2021</p>
   
 
 
         </div>
-        <div class="row mt-2">
+        <!-- <div class="row mt-2">
   <h3>Search</h3>
   <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
   <div style="margin-top: 1.5rem;">
     <ul id="result"></ul>
   </div>
-</div>
+</div> -->
         <div class="row mt-2">
   
     <div class="eight columns">
@@ -253,6 +259,10 @@ git push<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 
       
 
+      
+      <a class="ml-0 footer-link icon" href="https://www.instagram.com/alee_ba_ba/" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="Instagram">
+        <svg class="instagram svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+      </a>
       
 
       

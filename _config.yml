@@ -1,0 +1,55 @@
+#title in header
+title: "Hi there!"
+
+#main info
+#owner
+owner: "I am Alee Tsai"
+email: aleetsaiya@gmail.com
+info: "A Computer Science student who wants to be a Front-End engineer from Taiwan 👨‍💻"
+#description
+desc: "This is my coding blog. I will share my learning experience about coding on this site, hope you enjoy! 😁"
+
+#menu
+menu:
+  Works: /Works
+  About: /About
+
+#index/main page max show posts (in number)
+max_post: 5
+
+# Colors use hex color without #
+# Theme color
+tcolor: 0FA0CE
+
+# Define path to user css
+#(could be also located outside of theme)
+# Relative to source/ directory
+usercss: css/user.css
+
+# social profile at the footer/bottom
+footer: true
+placename: Taiwan
+placelink: https://en.wikipedia.org/wiki/Taiwan
+github: https://github.com/aleetsaiya
+linkedin: https://www.linkedin.com/in/alee-tsai/
+instagram: https://www.instagram.com/alee_ba_ba/
+
+# Misc
+nanobar: /js/nanobar.min.js
+switch_light: ☀️
+switch_dark: 🌑
+
+# Picture enlargement
+picjs: /js/pic.min.js
+
+# favicon
+favicon: /images/favicon.png
+# thumbnail
+thumbnail: /images/thumbnail.jpg
+
+article:
+  thumbnail: true
+
+# DISQUS comments (sign up to Disqus to get disqus_shortname)
+disqus_enabled: false
+disqus_shortname: https-adisaktijrs-github-io

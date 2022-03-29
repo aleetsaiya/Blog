@@ -1,5 +1,5 @@
 ---
-title: window terminal 增加 git bash
+title: 如何在 window terminal 增加 git bash
 date: 2022-01-20 13:45:16
 ---
 

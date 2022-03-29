@@ -1,5 +1,5 @@
 ---
-title: vscode - 快捷鍵、主題、extension 紀錄
+title: vscode 快捷鍵、主題、extension 記錄
 date: 2022-01-10 15:23:55
 categories: Front-end
 ---

@@ -1,5 +1,5 @@
 ---
-title: leetcode 筆記
+title: leetcode 寫題記錄
 date: 2021-07-21 16:14:27
 ---
 

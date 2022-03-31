@@ -11,11 +11,11 @@
   <meta charset="utf-8">
 
   
-  <title>About - Alee Tsai</title>
+  <title>Typescript-start</title>
   
-  <link rel="canonical" href="https://aleetsaiya.github.io/About/">
+  <link rel="canonical" href="https://aleetsaiya.github.io/2022/03/31/Typescript-begin/">
   
-  <meta name="description" content="">
+  <meta name="description" content="布魯斯的 TypeScript 入門攻略｜輕鬆打造實時聊天室 課程筆記 Setup Step.1 Install: npm install -g typescript Step.2 Init: tsc --init Step.3 Setting: 設定 ts.config Step.4 Compil">
   
   
   <meta name="author" content="Alee Tsai">
@@ -24,21 +24,21 @@
   
   <meta property="og:site_name" content="Coding Blog" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="About - Alee Tsai" />
+  <meta property="og:title" content="Typescript-start" />
   
-  <meta property="og:description" content="">
+  <meta property="og:description" content="布魯斯的 TypeScript 入門攻略｜輕鬆打造實時聊天室 課程筆記 Setup Step.1 Install: npm install -g typescript Step.2 Init: tsc --init Step.3 Setting: 設定 ts.config Step.4 Compil">
   
-  <meta property="og:url" content="https://aleetsaiya.github.io/About/" />
+  <meta property="og:url" content="https://aleetsaiya.github.io/2022/03/31/Typescript-begin/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About - Alee Tsai">
+  <meta name="twitter:title" content="Typescript-start">
   
-  <meta name="twitter:description" content="">
-  
-  
+  <meta name="twitter:description" content="布魯斯的 TypeScript 入門攻略｜輕鬆打造實時聊天室 課程筆記 Setup Step.1 Install: npm install -g typescript Step.2 Init: tsc --init Step.3 Setting: 設定 ts.config Step.4 Compil">
   
   
-  <meta name="twitter:url" content="https://aleetsaiya.github.io/About/" />
+  
+  
+  <meta name="twitter:url" content="https://aleetsaiya.github.io/2022/03/31/Typescript-begin/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -195,29 +195,25 @@
 </div>
 
         <div class="trans">
-            <h2>About</h2>
+            <h2>Typescript-start</h2>
 
-  <img src="/images/avatar.jpg" alt="avatar"/>
-
-<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Hi there! My name is Hsueh-Ya, Tsai (蔡學亞), you can also call me Alee. I’m a Computer Science student who has a passion for web development. I often take online coding courses to improve my coding skills &amp; increase my CS knowledge. For now, I have basic Front-End skills. Hope to be a Front-End engineer in the future👨‍💻🚀.</p>
-<blockquote>
-<p>If you want to see my Front-End side projects, you can visit the <a href="/Works">Works</a> page on this site.</p>
-</blockquote>
-<h2 id="Skills"><a href="#Skills" class="headerlink" title="Skills"></a>Skills</h2><ul>
-<li>HTML</li>
-<li>CSS</li>
-<li>Javascript</li>
-<li>React</li>
-<li>Git</li>
-<li>Python</li>
+  <p><a target="_blank" rel="noopener" href="https://hiskio.com/courses/628/about">布魯斯的 TypeScript 入門攻略｜輕鬆打造實時聊天室</a> 課程筆記</p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ul>
+<li>Step.1 Install: <code>npm install -g typescript</code></li>
+<li>Step.2 Init: <code>tsc --init</code></li>
+<li>Step.3 Setting: 設定 <code>ts.config</code></li>
+<li>Step.4 Compile: <code>tsc</code></li>
 </ul>
-<h2 id="Education-Background"><a href="#Education-Background" class="headerlink" title="Education Background"></a>Education Background</h2><p>Tamkang University, Bachelor’s degree in Computer Science (2018.09 ~ 2022.09)</p>
-<h2 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact</h2><ul>
-<li>Email: <a href="mailto:&#97;&#108;&#101;&#101;&#116;&#115;&#97;&#105;&#121;&#97;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#97;&#108;&#101;&#101;&#116;&#115;&#97;&#105;&#121;&#97;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a></li>
-<li>Github: <a target="_blank" rel="noopener" href="https://github.com/aleetsaiya">visit</a></li>
-<li>Linkedin: <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/alee-tsai/">visit</a></li>
-<li>Instagram: <a target="_blank" rel="noopener" href="https://www.instagram.com/alee_ba_ba/">visit</a></li>
-</ul>
+<h2 id="Setting-ts-config"><a href="#Setting-ts-config" class="headerlink" title="Setting ts.config"></a>Setting ts.config</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token comment">// 我們寫的 index.ts 的資料夾</span>
+<span class="token property">"rootDir"</span><span class="token operator">:</span> <span class="token string">"./src"</span>
+<span class="token comment">// 設定輸出資料夾</span>
+<span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"./dist"</span>
+<span class="token comment">// 允許我們使用 js 檔</span>
+<span class="token property">"allowJS"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token comment">// 開啟這個選項能夠讓我們在 browser 的 console 中直接連結到是哪行 ts 檔輸出的，方便 debug</span>
+<span class="token property">"sourceMap"</span><span class="token operator">:</span> <span class="token boolean">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <p> — Mar 31, 2022</p>
+  
 
 
         </div>

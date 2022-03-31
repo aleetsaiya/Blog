@@ -6,7 +6,7 @@ date: 2022-03-25 23:45:20
 <img src="/images/avatar.jpg" alt="avatar"/>
 
 ## Intro
-Hi there! My name is Hsueh-Ya, Tsai (蔡學亞), you can also call me Alee Tsai. I'm a Computer Science student who has a passion for web development. I often take online coding courses to improve my coding skills & increase my CS knowledge. For now, I have basic Front-End skills. Hope to be a Front-End engineer in the future👨‍💻🚀.
+Hi there! My name is Hsueh-Ya, Tsai (蔡學亞), you can also call me Alee. I'm a Computer Science student who has a passion for web development. I often take online coding courses to improve my coding skills & increase my CS knowledge. For now, I have basic Front-End skills. Hope to be a Front-End engineer in the future👨‍💻🚀.
 
 > If you want to see my Front-End side projects, you can visit the [Works](/Works) page on this site.
 

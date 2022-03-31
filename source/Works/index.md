@@ -8,6 +8,7 @@ This page stores all the Front-End side projects that I did before.
 ## Directory
 > The upper project means that it's more closer to the current time
 + [Search Github User](#Search-Github-User)
++ [Weather App](#Weather-App)
 + [30 Days Vanilla JS Challenge](#30-Days-Vanilla-JS-Challenge)
 + [Tomatoes Clock](#Tomatoes-Clock)
 
@@ -19,11 +20,24 @@ This page stores all the Front-End side projects that I did before.
 **[Visit app](https://aleetsaiya.github.io/dcard-frontend-hw/)** | **[Visit code](https://github.com/aleetsaiya/dcard-frontend-hw)**
 
 + Intro: This app can help us to get all the repositories from a Github user.
-+ Skills: React、React Router、RWD
++ Skills: React、React Router、Axios
 + Features:
+    - Use `axios` to make API request
     - Use `localStorage` to cache API response
-    - Alert when error occur
     - Infinite scroll
+
+----------------------------------
+
+### Weather App
+<img alt="Weather App" src="https://user-images.githubusercontent.com/67775387/160565338-296fae20-b455-49ac-8d44-045193d341dc.png">
+
+**[Visit app](https://aleetsaiya.github.io/WeatherApp/)** | **[Visit code](https://github.com/aleetsaiya/WeatherApp)**
+
++ Intro: A app that can show Tamsui's current weather
++ Skills: React、Axios
++ Features:
+    - Use `axios` to make API request
+    - Cool rainbow border
 
 ----------------------------------
 

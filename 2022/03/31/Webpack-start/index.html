@@ -224,6 +224,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
 <p>More about <code>module</code>: <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10185008">visit</a></p>
+<hr>
 <h2 id="Dev-Server"><a href="#Dev-Server" class="headerlink" title="Dev Server"></a>Dev Server</h2><p>如果要建立一個 local server 的話，webpack 有提供方法來幫助我們建立</p>
 <ol>
 <li><p>在 <code>webpack.config.js</code> 內加入: </p>
@@ -246,10 +247,19 @@ module<span class="token punctuation">.</span>exports <span class="token operato
   <span class="token property">"dev"</span><span class="token operator">:</span> <span class="token string">"webpack server"</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
-<h2 id="CSS-Loader"><a href="#CSS-Loader" class="headerlink" title="CSS Loader"></a>CSS Loader</h2><blockquote>
-<p>Loader 能夠幫助我們處理非 Javascript 的檔案，像是 css、scss、圖片、字體 …。</p>
+<hr>
+<h2 id="source-map"><a href="#source-map" class="headerlink" title="source-map"></a>source-map</h2><p>讓我們能夠從 console 中找到 bundle 前程式碼的位置。</p>
+<p>在 <code>webpack.config.js</code> 中設置:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 讓我們能夠從 console 中找到 bundle 前程式碼的位置</span>
+  <span class="token literal-property property">devtool</span><span class="token operator">:</span> <span class="token string">"source-map"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<h2 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h2><blockquote>
+<p>Loader 有點像是轉換器，他會根據 <code>test</code> 上的正則表示法來掃描檔案名稱，然後再將不是 Javascript 的檔案，或是新的 Javascript 語法轉換成瀏覽器看得懂的 JS code。</p>
 </blockquote>
-<p>在沒有加入 CSS Loader 的情況下，Webpack 預設只能讀的懂 Javascript，所以在我們 <code>import</code> css 檔案後程式會報錯。這時就要加入 CSS Loader</p>
+<h3 id="CSS-Loader"><a href="#CSS-Loader" class="headerlink" title="CSS Loader"></a>CSS Loader</h3><p>在沒有加入 CSS Loader 的情況下，Webpack 預設只能讀的懂 Javascript，所以在我們 <code>import</code> css 檔案後程式會報錯。這時就要加入 CSS Loader</p>
 <p>Docs: <a target="_blank" rel="noopener" href="https://webpack.js.org/loaders/css-loader/#root">Webpack css-loader</a></p>
 <ol>
 <li><code>npm install --save-dev css-loader style-loader</code></li>
@@ -267,7 +277,43 @@ module<span class="token punctuation">.</span>exports <span class="token operato
   <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
-<h2 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h2><h3 id="html-webpack-plugin"><a href="#html-webpack-plugin" class="headerlink" title="html-webpack-plugin"></a>html-webpack-plugin</h3><p>如果要避免 cache ，希望每次 bundle 出來的 js 檔都要有不一樣的名字，可以使用這個 plugin。它能夠幫我們自動生成 html 檔，以及透過設定 <code>[hash]</code> 將 js 檔的名稱增加亂數並自動在 html head 中嵌入</p>
+<h3 id="Babel-Loader"><a href="#Babel-Loader" class="headerlink" title="Babel Loader"></a>Babel Loader</h3><p>在 webpack 中添加 babel，使瀏覽器能夠支援新的 Javascript 語法</p>
+<p>docs: <a target="_blank" rel="noopener" href="https://babeljs.io/setup#installation">Babel setup</a></p>
+<ol>
+<li><code>npm install --save-dev babel-loader @babel/core</code></li>
+<li>在 <code>webpackage.config.js</code> 內加入:<pre class="line-numbers language-js" data-language="js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.m?js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+      <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+      <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">"babel-loader"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>npm install @babel/preset-env --save-dev</code></li>
+<li>建立 <code>babel.config.json</code><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  <span class="token property">"presets"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"@babel/preset-env"</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h3 id="Asset-Modules"><a href="#Asset-Modules" class="headerlink" title="Asset Modules"></a>Asset Modules</h3><p>Asset Module 能夠使我們不用特別設定所有的 asset files’ loader，就能夠使用多種檔案類型。像是我會使用到 gif 檔的話就可以在 <code>test</code> 中設定 <code>.gif</code>。</p>
+<p>docs: <a target="_blank" rel="noopener" href="https://webpack.js.org/guides/asset-modules/#resource-assets">Webpack Asset Module</a></p>
+<p>在 <code>webpackage.config.js</code> 內加入:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+     <span class="token punctuation">&#123;</span>
+       <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.gif</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+       <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'asset/resource'</span>
+     <span class="token punctuation">&#125;</span>
+   <span class="token punctuation">]</span>
+ <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h2 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h2><blockquote>
+<p>Plugin serve the purpose of doing anything else that a loader cannot do.</p>
+</blockquote>
+<h3 id="html-webpack-plugin"><a href="#html-webpack-plugin" class="headerlink" title="html-webpack-plugin"></a>html-webpack-plugin</h3><p>如果要避免 cache ，希望每次 bundle 出來的 js 檔都要有不一樣的名字，可以使用這個 plugin。它能夠幫我們自動生成 html 檔，以及透過設定 <code>[hash]</code> 將 js 檔的名稱增加亂數並自動在 html head 中嵌入</p>
 <ol>
 <li><code>npm install --save-dev html-webpack-plugin</code></li>
 <li>在 <code>webpackage.config.js</code> 內加入:<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> HtmlWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"html-webpack-plugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

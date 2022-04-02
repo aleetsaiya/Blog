@@ -37,6 +37,8 @@ module.exports = {
 
 More about `module`: [visit](https://ithelp.ithome.com.tw/articles/10185008)
 
+-------------------------
+
 ## Dev Server
 如果要建立一個 local server 的話，webpack 有提供方法來幫助我們建立
 
@@ -63,10 +65,25 @@ module.exports {
   "dev": "webpack server"
 }
 ```
+-------------------------
 
-## CSS Loader
-> Loader 能夠幫助我們處理非 Javascript 的檔案，像是 css、scss、圖片、字體 ...。
+## source-map
+讓我們能夠從 console 中找到 bundle 前程式碼的位置。
 
+在 `webpack.config.js` 中設置:
+```js
+module.exports = {
+  // 讓我們能夠從 console 中找到 bundle 前程式碼的位置
+  devtool: "source-map"
+}
+```
+
+-------------------------
+
+## Loader
+> Loader 有點像是轉換器，他會根據 `test` 上的正則表示法來掃描檔案名稱，然後再將不是 Javascript 的檔案，或是新的 Javascript 語法轉換成瀏覽器看得懂的 JS code。
+
+### CSS Loader
 在沒有加入 CSS Loader 的情況下，Webpack 預設只能讀的懂 Javascript，所以在我們 `import` css 檔案後程式會報錯。這時就要加入 CSS Loader
 
 Docs: [Webpack css-loader](https://webpack.js.org/loaders/css-loader/#root)
@@ -89,7 +106,56 @@ module.exports {
 }
 ```
 
+### Babel Loader
+在 webpack 中添加 babel，使瀏覽器能夠支援新的 Javascript 語法
+
+docs: [Babel setup](https://babeljs.io/setup#installation)
+
+1. `npm install --save-dev babel-loader @babel/core`
+2. 在 `webpackage.config.js` 內加入:
+```js
+module.exports = {
+  rules: [
+    {
+      test: /\.m?js$/,
+      exclude: /node_modules/,
+      use: {
+        loader: "babel-loader",
+      }
+    }
+  ]
+}
+```
+3. `npm install @babel/preset-env --save-dev`
+4. 建立 `babel.config.json`
+```json
+{
+  "presets": ["@babel/preset-env"]
+}
+```
+
+### Asset Modules
+Asset Module 能夠使我們不用特別設定所有的 asset files' loader，就能夠使用多種檔案類型。像是我會使用到 gif 檔的話就可以在 `test` 中設定 `.gif`。
+
+docs: [Webpack Asset Module](https://webpack.js.org/guides/asset-modules/#resource-assets)
+
+在 `webpackage.config.js` 內加入:
+```js
+module.exports = {
+  rules: [
+     {
+       test: /\.gif/,
+       type: 'asset/resource'
+     }
+   ]
+ },
+}
+```
+-------------------------
+
 ## Plugin
+> Plugin serve the purpose of doing anything else that a loader cannot do.
+
 ### html-webpack-plugin
 如果要避免 cache ，希望每次 bundle 出來的 js 檔都要有不一樣的名字，可以使用這個 plugin。它能夠幫我們自動生成 html 檔，以及透過設定 `[hash]` 將 js 檔的名稱增加亂數並自動在 html head 中嵌入
 

@@ -11,38 +11,34 @@
   <meta charset="utf-8">
 
   
-  <title>Coding Blog</title>
+  <title>Style your windows powershell and git bash</title>
   
-  <link rel="canonical" href="https://aleetsaiya.github.io/page/3/">
+  <link rel="canonical" href="https://aleetsaiya.github.io/2022/04/02/Style-your-windows-powershell-and-git-bash/">
   
-  <meta name="description" content="Record my coding learning experience">
+  <meta name="description" content="之前一直看到別人將自己的 terminal 改的很酷炫，可以顯示 git branch 而且還有一大堆顏色，今天有時間研究了一下終於也把自己的 terminal 增加了這些功能，順便記錄一下操作過程以免之後換電腦不知道要怎麼用。 Windows PowerShell基本上如果是要在 windows ">
   
   
   <meta name="author" content="Alee Tsai">
   
   
-  <meta property="og:image" content="https://aleetsaiya.github.io/images/thumbnail.jpg">
-  
   
   <meta property="og:site_name" content="Coding Blog" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Coding Blog" />
+  <meta property="og:title" content="Style your windows powershell and git bash" />
   
-  <meta property="og:description" content="Record my coding learning experience">
+  <meta property="og:description" content="之前一直看到別人將自己的 terminal 改的很酷炫，可以顯示 git branch 而且還有一大堆顏色，今天有時間研究了一下終於也把自己的 terminal 增加了這些功能，順便記錄一下操作過程以免之後換電腦不知道要怎麼用。 Windows PowerShell基本上如果是要在 windows ">
   
-  <meta property="og:url" content="https://aleetsaiya.github.io/page/3/" />
+  <meta property="og:url" content="https://aleetsaiya.github.io/2022/04/02/Style-your-windows-powershell-and-git-bash/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Coding Blog">
+  <meta name="twitter:title" content="Style your windows powershell and git bash">
   
-  <meta name="twitter:description" content="Record my coding learning experience">
-  
-  
-  
-  <meta name="twitter:image" content="https://aleetsaiya.github.io/images/thumbnail.jpg">
+  <meta name="twitter:description" content="之前一直看到別人將自己的 terminal 改的很酷炫，可以顯示 git branch 而且還有一大堆顏色，今天有時間研究了一下終於也把自己的 terminal 增加了這些功能，順便記錄一下操作過程以免之後換電腦不知道要怎麼用。 Windows PowerShell基本上如果是要在 windows ">
   
   
-  <meta name="twitter:url" content="https://aleetsaiya.github.io/page/3/" />
+  
+  
+  <meta name="twitter:url" content="https://aleetsaiya.github.io/2022/04/02/Style-your-windows-powershell-and-git-bash/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -199,90 +195,44 @@
 </div>
 
         <div class="trans">
-          <div class="row">
-  <div class="column">
-    <!-- Main information, edit it on theme/_config.yml -->
-    <h2 class="mb-2">I am Hsueh-Ya (Alee), Tsai</h2>
-    <p>A Computer Science student who wants to be a Front-End engineer from Taiwan.👨‍💻</p>
-    <p>This is my coding blog. I will share my learning experience about coding on this site. You can visit About page if you want to know more about me, hope you enjoy! 😁</p>
-  </div>
-</div>
+            <h2>Style your windows powershell and git bash</h2>
 
-<h3>Recent Posts</h3>
+  <p>之前一直看到別人將自己的 terminal 改的很酷炫，可以顯示 git branch 而且還有一大堆顏色，今天有時間研究了一下終於也把自己的 terminal 增加了這些功能，順便記錄一下操作過程以免之後換電腦不知道要怎麼用。</p>
+<h2 id="Windows-PowerShell"><a href="#Windows-PowerShell" class="headerlink" title="Windows PowerShell"></a>Windows PowerShell</h2><p>基本上如果是要在 windows powershell 上有這些功能，只要跟著官方提供的方式 (<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/windows/terminal/tutorials/custom-prompt-setup#customize-your-powershell-prompt-with-oh-my-posh">教學課程：使用喔 My Posh 設定 PowerShell 或 WSL 的自訂提示</a> 就可以完成了，大致步驟如下:</p>
+<ol>
+<li>從 <a target="_blank" rel="noopener" href="https://www.nerdfonts.com/font-downloads">NerdFonts</a> 安裝想要的字形 (為了避免有些 icon 跑不出來出現白框框)，解壓縮後應該會有 <code>True Type font file</code> 的檔案，將這些檔案丟到 <em>控制台</em> -&gt; <em>外觀及個人化</em> -&gt; <em>字形</em> 裡面</li>
+<li>從 windows terminal 的設定中，點擊 <em>powershell</em> -&gt; <em>外觀</em>，將文字改成下載的字體</li>
+<li>在 terminal 上輸入<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">Install-Module</span> oh-my-posh <span class="token operator">-</span>Scope CurrentUser<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+下載 oh-my-posh 以及其主題</li>
+<li>從 <a target="_blank" rel="noopener" href="https://ohmyposh.dev/docs/themes">oh-my-posh themes</a> 上挑自己想要的主題</li>
+<li>在 terminal 上輸入<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">code <span class="token variable">$PROFILE</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+開啟 vscode 設定我們的 PowerShell 設定檔</li>
+<li>在開啟的檔案中新增程式碼:<pre class="line-numbers language-powerShell" data-language="powerShell"><code class="language-powerShell">Import-Module oh-my-posh
+Set-PoshPrompt -Theme powerlevel10k_rainbow<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+powerlevel10k_rainbow 是主題的名稱，也可以換成其它自己想要的主題</li>
+</ol>
+<blockquote>
+<p>PowerShell 設定檔是在 PowerShell 啟動時執行的指令碼。您可以使用設定檔做為登入腳本來自訂環境。</p>
+</blockquote>
+<p>接下來重新開啟 terminal 就可以有新的主題了!</p>
+<h3 id="Git-bash"><a href="#Git-bash" class="headerlink" title="Git bash"></a>Git bash</h3><p>我自己是在 windows terminal 上使用 git bash，方法可以參考 <a href="https://aleetsaiya.github.io/2022/01/20/window-terminal-%E5%A2%9E%E5%8A%A0-git-bash/">如何在 window terminal 增加 git bash</a>。</p>
+<ol>
+<li>跟上述第一步一樣安裝字體</li>
+<li>從 windows terminal 的設定中，點擊 <em>git bash</em> -&gt; <em>外觀</em>，將文字改成下載的字體</li>
+<li>在 <code>C:\Program Files\Git\usr\bin</code> 內，擺入 <code>oh-my-posh.exe</code></li>
+<li>在 git bash 上輸入 <code>$HOME</code></li>
+<li>在顯示的資料夾位置裡面加入自己想要的主題檔，像是我想要的主題叫做 <em>powerlevel10k_rainbow</em>，就可以從 <a target="_blank" rel="noopener" href="https://github.com/JanDeDobbeleer/oh-my-posh/tree/main/themes">oh-my-posh themes</a> 裡面找到名叫 <a target="_blank" rel="noopener" href="https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_rainbow.omp.json">powerlevel10k_rainbow.omp.json</a> 的 json 檔。</li>
+</ol>
+<p>6.在 <code>$HOME</code> 顯示的資料夾位置內建立 <code>.bashrc</code> 檔。<br>7. 在 <code>.bashrc</code> 內輸入</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">eval <span class="token string">"<span class="token function">$<span class="token punctuation">(</span>oh-my-posh init bash <span class="token operator">--</span>config ~<span class="token operator">/</span>powerlevel10k_rainbow<span class="token punctuation">.</span>omp<span class="token punctuation">.</span>json<span class="token punctuation">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p><code>powerlevel10k_rainbow</code> 是主題的名稱，也可以換成其它自己想要的主題 </p>
+</blockquote>
+<p>接下來重新開啟 terminal 新的主題就會開始套用了喔!</p>
 
+  <p> — Apr 2, 2022</p>
+  
 
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">Apr 2, 2022</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2022/04/02/Style-your-windows-powershell-and-git-bash/" >
-      
-        Style your windows powershell and git bash
-      
-    </a>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">Mar 31, 2022</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2022/03/31/Webpack-start/" >
-      
-        Webpack start
-      
-    </a>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">Mar 31, 2022</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2022/03/31/Typescript-begin/" >
-      
-        Typescript start
-      
-    </a>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">Mar 31, 2022</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2022/03/31/How-to-use-Markdown-syntax-in-Google-Docs/" >
-      
-        How to use Markdown syntax in Google Docs
-      
-    </a>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">Mar 28, 2022</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2022/03/28/Next-js-Getting-Start-Note/" >
-      
-        Next.js Getting Start Note
-      
-    </a>
-  </div>
-</div>
-
-
-<h4> <a href="/archives">All Posts</a></h4>
 
         </div>
         <!-- <div class="row mt-2">

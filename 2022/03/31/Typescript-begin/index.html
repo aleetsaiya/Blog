@@ -11,11 +11,11 @@
   <meta charset="utf-8">
 
   
-  <title>Typescript-start</title>
+  <title>Typescript start</title>
   
   <link rel="canonical" href="https://aleetsaiya.github.io/2022/03/31/Typescript-begin/">
   
-  <meta name="description" content="布魯斯的 TypeScript 入門攻略｜輕鬆打造實時聊天室 課程筆記 Setup Step.1 Install: npm install -g typescript Step.2 Init: tsc --init Step.3 Setting: 設定 ts.config Step.4 Compil">
+  <meta name="description" content="布魯斯的 TypeScript 入門攻略｜輕鬆打造實時聊天室 課程筆記 Setup npm install -g typescript tsc --init setting ts.config&amp;#123;   // 我們寫的 index.ts 的資料夾   &#34;rootDir&#34;: &#34;./src&#34;   ">
   
   
   <meta name="author" content="Alee Tsai">
@@ -24,16 +24,16 @@
   
   <meta property="og:site_name" content="Coding Blog" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Typescript-start" />
+  <meta property="og:title" content="Typescript start" />
   
-  <meta property="og:description" content="布魯斯的 TypeScript 入門攻略｜輕鬆打造實時聊天室 課程筆記 Setup Step.1 Install: npm install -g typescript Step.2 Init: tsc --init Step.3 Setting: 設定 ts.config Step.4 Compil">
+  <meta property="og:description" content="布魯斯的 TypeScript 入門攻略｜輕鬆打造實時聊天室 課程筆記 Setup npm install -g typescript tsc --init setting ts.config&amp;#123;   // 我們寫的 index.ts 的資料夾   &#34;rootDir&#34;: &#34;./src&#34;   ">
   
   <meta property="og:url" content="https://aleetsaiya.github.io/2022/03/31/Typescript-begin/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Typescript-start">
+  <meta name="twitter:title" content="Typescript start">
   
-  <meta name="twitter:description" content="布魯斯的 TypeScript 入門攻略｜輕鬆打造實時聊天室 課程筆記 Setup Step.1 Install: npm install -g typescript Step.2 Init: tsc --init Step.3 Setting: 設定 ts.config Step.4 Compil">
+  <meta name="twitter:description" content="布魯斯的 TypeScript 入門攻略｜輕鬆打造實時聊天室 課程筆記 Setup npm install -g typescript tsc --init setting ts.config&amp;#123;   // 我們寫的 index.ts 的資料夾   &#34;rootDir&#34;: &#34;./src&#34;   ">
   
   
   
@@ -195,23 +195,134 @@
 </div>
 
         <div class="trans">
-            <h2>Typescript-start</h2>
+            <h2>Typescript start</h2>
 
   <p><a target="_blank" rel="noopener" href="https://hiskio.com/courses/628/about">布魯斯的 TypeScript 入門攻略｜輕鬆打造實時聊天室</a> 課程筆記</p>
-<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ul>
-<li>Step.1 Install: <code>npm install -g typescript</code></li>
-<li>Step.2 Init: <code>tsc --init</code></li>
-<li>Step.3 Setting: 設定 <code>ts.config</code></li>
-<li>Step.4 Compile: <code>tsc</code></li>
-</ul>
-<h2 id="Setting-ts-config"><a href="#Setting-ts-config" class="headerlink" title="Setting ts.config"></a>Setting ts.config</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token comment">// 我們寫的 index.ts 的資料夾</span>
-<span class="token property">"rootDir"</span><span class="token operator">:</span> <span class="token string">"./src"</span>
-<span class="token comment">// 設定輸出資料夾</span>
-<span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"./dist"</span>
-<span class="token comment">// 允許我們使用 js 檔</span>
-<span class="token property">"allowJS"</span><span class="token operator">:</span> <span class="token boolean">true</span>
-<span class="token comment">// 開啟這個選項能夠讓我們在 browser 的 console 中直接連結到是哪行 ts 檔輸出的，方便 debug</span>
-<span class="token property">"sourceMap"</span><span class="token operator">:</span> <span class="token boolean">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
+<li><code>npm install -g typescript</code></li>
+<li><code>tsc --init</code></li>
+<li>setting <code>ts.config</code><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  <span class="token comment">// 我們寫的 index.ts 的資料夾</span>
+  <span class="token property">"rootDir"</span><span class="token operator">:</span> <span class="token string">"./src"</span>
+  <span class="token comment">// 設定輸出資料夾</span>
+  <span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"./dist"</span>
+  <span class="token comment">// 允許我們使用 js 檔</span>
+  <span class="token property">"allowJS"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token comment">// 開啟這個選項能夠讓我們在 browser 的   console 中直接連結到是哪行 ts 檔輸出的，方便   debug</span>
+  <span class="token property">"sourceMap"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>run <code>tsc</code></li>
+</ol>
+<hr>
+<h2 id="Setup-webpack-with-ts-loader"><a href="#Setup-webpack-with-ts-loader" class="headerlink" title="Setup webpack with ts-loader"></a>Setup webpack with ts-loader</h2><p>因為 ts-loader 會使用 <code>tsc</code> 來幫我們處理 typescript 的檔案，所以要建立 <code>ts.config</code> 來設定 <code>tsc</code> 的一些參數。</p>
+<p>docs: <a target="_blank" rel="noopener" href="https://webpack.js.org/guides/typescript/">Webpack Typescript</a></p>
+<ol>
+<li><code>npm install typescript ts-loader</code></li>
+<li>建立 <code>tsconfig.json</code><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  <span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"./dist/"</span><span class="token punctuation">,</span>
+    <span class="token property">"noImplicitAny"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"module"</span><span class="token operator">:</span> <span class="token string">"es6"</span><span class="token punctuation">,</span>
+    <span class="token property">"target"</span><span class="token operator">:</span> <span class="token string">"es5"</span><span class="token punctuation">,</span>
+    <span class="token property">"jsx"</span><span class="token operator">:</span> <span class="token string">"react"</span><span class="token punctuation">,</span>
+    <span class="token property">"allowJs"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"moduleResolution"</span><span class="token operator">:</span> <span class="token string">"node"</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>設定 <code>webpack.config.js</code><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token string">'./src/index.ts'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.tsx?$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token string">'ts-loader'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token comment">// webpack 默認只會編譯 js 檔，設定 resolve 讓 webpack 能夠將 tsx 以及 ts 也被 webpack 編譯</span>
+  <span class="token literal-property property">resolve</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">extensions</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'.tsx'</span><span class="token punctuation">,</span> <span class="token string">'.ts'</span><span class="token punctuation">,</span> <span class="token string">'.js'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'bundle.js'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<blockquote>
+<p>ts-loader uses tsc, the TypeScript compiler, and relies on your tsconfig.json configuration. Make sure to avoid setting module to “CommonJS”, or webpack won’t be able to <strong>tree-shake</strong> your code.</p>
+</blockquote>
+<p>tree-shaking 能夠讓我們在 import 例如 <code>axios/get</code> 的時候不會將 <code>axios</code> 全部 import 近來，只會 import <code>get</code>，能夠有效地增加網站效能。 </p>
+<hr>
+<h2 id="Typescript-語法"><a href="#Typescript-語法" class="headerlink" title="Typescript 語法"></a>Typescript 語法</h2><h3 id="斷言"><a href="#斷言" class="headerlink" title="斷言"></a>斷言</h3><p>斷言就是我們在一個變數後面加上 <code>as</code>，然後這個變數的型態就會變成我們設定的型態。</p>
+<blockquote>
+<p>可以應用在當我們 fetch 一個 API 的時候。在 fetch 之前 Typescript 不會知道 fetch 完後的變數長什麼樣子，所以在 fetch 完後我們就可以自己用 <code>as</code> 來去設定它的型態</p>
+</blockquote>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">"https://jsonplaceholder.typicode.com/todos/1"</span><span class="token punctuation">)</span>   
+  <span class="token comment">// fetch 完後設定資料型態</span>
+  <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">await</span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">userId</span><span class="token operator">:</span> number<span class="token punctuation">;</span>
+    <span class="token literal-property property">id</span><span class="token operator">:</span> number<span class="token punctuation">;</span>
+    <span class="token literal-property property">title</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+    <span class="token literal-property property">completed</span><span class="token operator">:</span> boolean<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> data
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="強制斷言"><a href="#強制斷言" class="headerlink" title="強制斷言"></a>強制斷言</h3><p>有時候可能我們知道這個變數型態已經從原本的變成另一個型態，但是 Typescript 不給我們直接轉，像是底下的情況:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> liveName2 <span class="token operator">=</span> <span class="token number">91</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> liveName3 <span class="token operator">=</span> liveName2 <span class="token keyword">as</span> string<span class="token punctuation">;</span> <span class="token comment">//error -> Conversion of type 'number' to type 'string' may be a mistake</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>這時候就能使用強制斷言，先將變數型態轉成 <code>unknown</code>，再轉換成其它型態</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> liveName2 <span class="token operator">=</span> <span class="token number">91</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> liveName3 <span class="token operator">=</span> liveName2 <span class="token keyword">as</span> unknown <span class="token keyword">as</span> string<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="Never"><a href="#Never" class="headerlink" title="Never"></a>Never</h3><p>never 就是 Typescript 判斷永遠不可能發生的類型，像是底下例子:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">let</span> <span class="token literal-property property">liveName</span><span class="token operator">:</span> string <span class="token operator">|</span> number<span class="token punctuation">;</span>
+liveName <span class="token operator">=</span> <span class="token string">"alee"</span><span class="token punctuation">;</span>
+liveName <span class="token operator">=</span> <span class="token number">9</span><span class="token punctuation">;</span>
+
+<span class="token comment">// never -> typeof liveName 不可能是 string</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> liveName <span class="token operator">===</span> <span class="token string">"string"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   liveName<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//error </span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Type-Interface-擴充"><a href="#Type-Interface-擴充" class="headerlink" title="Type, Interface 擴充"></a>Type, Interface 擴充</h3><p>使用 <code>type</code> 的話用 <code>&amp;</code> 可以進行擴充，使用 <code>interface</code> 的話用 <code>extends</code> 可以進行擴充。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// type</span>
+type Animal <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+type Dog <span class="token operator">=</span> Animal <span class="token operator">&amp;</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">age</span><span class="token operator">:</span> number<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// interface</span>
+<span class="token keyword">interface</span> <span class="token class-name">Animal2</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Dog2</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">age</span><span class="token operator">:</span> number<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>Type 與 Interface 差別在重複命名 Interface 的話會將原有的 Interface 進行擴充，而 Type 則無法重複命名。</p>
+</blockquote>
+<h3 id="enum"><a href="#enum" class="headerlink" title="enum"></a>enum</h3><p>設定每個符號代表的東西讓程式碼更容易閱讀</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">enum</span> LiveStatus <span class="token punctuation">&#123;</span>
+  <span class="token string">"streaming"</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  <span class="token string">"closed"</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token string">"multiple"</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> liveStatus <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>liveStatus <span class="token operator">===</span> LiveStatus<span class="token punctuation">.</span>streaming<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
   <p> — Mar 31, 2022</p>
   
 

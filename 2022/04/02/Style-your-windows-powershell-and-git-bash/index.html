@@ -208,8 +208,8 @@
 <li>在 terminal 上輸入<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">code <span class="token variable">$PROFILE</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 開啟 vscode 設定我們的 PowerShell 設定檔</li>
 <li>在開啟的檔案中新增程式碼:<pre class="line-numbers language-powerShell" data-language="powerShell"><code class="language-powerShell">Import-Module oh-my-posh
-Set-PoshPrompt -Theme powerlevel10k_rainbow<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-powerlevel10k_rainbow 是主題的名稱，也可以換成其它自己想要的主題</li>
+Set-PoshPrompt -Theme paradox<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+paradox 是主題的名稱，也可以換成其它自己想要的主題</li>
 </ol>
 <blockquote>
 <p>PowerShell 設定檔是在 PowerShell 啟動時執行的指令碼。您可以使用設定檔做為登入腳本來自訂環境。</p>
@@ -221,12 +221,12 @@ powerlevel10k_rainbow 是主題的名稱，也可以換成其它自己想要的�
 <li>從 windows terminal 的設定中，點擊 <em>git bash</em> -&gt; <em>外觀</em>，將文字改成下載的字體</li>
 <li>在 <code>C:\Program Files\Git\usr\bin</code> 內，擺入 <code>oh-my-posh.exe</code></li>
 <li>在 git bash 上輸入 <code>$HOME</code></li>
-<li>在顯示的資料夾位置裡面加入自己想要的主題檔，像是我想要的主題叫做 <em>powerlevel10k_rainbow</em>，就可以從 <a target="_blank" rel="noopener" href="https://github.com/JanDeDobbeleer/oh-my-posh/tree/main/themes">oh-my-posh themes</a> 裡面找到名叫 <a target="_blank" rel="noopener" href="https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_rainbow.omp.json">powerlevel10k_rainbow.omp.json</a> 的 json 檔。</li>
+<li>在顯示的資料夾位置裡面加入自己想要的主題檔，像是我想要的主題叫做 <em>paradox</em>，就可以從 <a target="_blank" rel="noopener" href="https://github.com/JanDeDobbeleer/oh-my-posh/tree/main/themes">oh-my-posh themes</a> 裡面找到名叫 <a target="_blank" rel="noopener" href="https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/paradox.omp.json">paradox.omp.json</a> 的 json 檔。</li>
 </ol>
 <p>6.在 <code>$HOME</code> 顯示的資料夾位置內建立 <code>.bashrc</code> 檔。<br>7. 在 <code>.bashrc</code> 內輸入</p>
-<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">eval <span class="token string">"<span class="token function">$<span class="token punctuation">(</span>oh-my-posh init bash <span class="token operator">--</span>config ~<span class="token operator">/</span>powerlevel10k_rainbow<span class="token punctuation">.</span>omp<span class="token punctuation">.</span>json<span class="token punctuation">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">eval <span class="token string">"<span class="token function">$<span class="token punctuation">(</span>oh-my-posh init bash <span class="token operator">--</span>config ~<span class="token operator">/</span>paradox<span class="token punctuation">.</span>omp<span class="token punctuation">.</span>json<span class="token punctuation">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
-<p><code>powerlevel10k_rainbow</code> 是主題的名稱，也可以換成其它自己想要的主題 </p>
+<p><code>paradox</code> 是主題的名稱，也可以換成其它自己想要的主題 </p>
 </blockquote>
 <p>接下來重新開啟 terminal 新的主題就會開始套用了喔!</p>
 

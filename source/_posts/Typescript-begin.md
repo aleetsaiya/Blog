@@ -162,3 +162,61 @@ if (liveStatus === LiveStatus.streaming) {
 }
 
 ```
+
+### Implement Interface
+interface 可以用來約束建立出來的 class 必須需要有什麼功能以及屬性
+```js
+// 建立 interface
+interface UserInterface {
+  id: number;
+  name: string;
+  age: number;
+  address: string;
+
+  // 會員功能
+  add: (data: any) => void;
+  update: (id: number) => boolean;
+  delete: (id: number) => boolean;
+}
+
+// implements interface
+class LiveUser implements UserInterface {
+  // 必須要有 interface 定義的東西
+  id: number;
+  name: string;
+  age: number;
+  address: string;
+
+  add(data: any) {}
+  update(id: number) {
+    return true;
+  }
+  delete(id: number) {
+    return true;
+  }
+
+  // 也可以新增額外的功能
+  startLive() {}
+  endLive() {}
+}
+```
+
+### Abstract class
+Abstract class 本身可以有自己的功能，也可以約束 `extends` 的 class 需要有什麼功能
+
+```js
+abstract class Animal {
+  run() {
+    console.log("run ...");
+  }
+  // 要求需要實作出 hello
+  abstract hello(): void;
+}
+
+class Dog extends Animal {
+  // 實作 hello
+  hello() {
+    console.log("Hello");
+  }
+}
+```

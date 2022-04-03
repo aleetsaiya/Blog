@@ -25,4 +25,4 @@ Tamkang University, Bachelor's degree in Computer Science (2018.09 ~ 2022.09)
 + Email: aleetsaiya@gmail.com
 + Github: [visit](https://github.com/aleetsaiya)
 + Linkedin: [visit](https://www.linkedin.com/in/alee-tsai/)
-+ Instagram: [visit](https://www.instagram.com/alee_ba_ba/)
++ Twitter: [visit](https://twitter.com/Alee_ba_ba)

@@ -105,3 +105,9 @@ deploy:
   type: git
   repo: https://github.com/aleetsaiya/aleetsaiya.github.io
   branch: master
+
+# Search
+search:
+  path: search.json
+  field: post
+  content: true

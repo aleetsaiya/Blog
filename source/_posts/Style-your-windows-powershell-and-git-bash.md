@@ -6,6 +6,9 @@ tags:
 
 之前一直看到別人將自己的 terminal 改的很酷炫，可以顯示 git branch 而且還有一大堆顏色，今天有時間研究了一下終於也把自己的 terminal 增加了這些功能，順便記錄一下操作過程以免之後換電腦不知道要怎麼用。
 
+完成後的模樣:
+
+<img width="725" alt="螢幕擷取畫面 2022-04-03 145841" src="https://user-images.githubusercontent.com/67775387/161415750-1b5e7d01-2391-4450-a482-57a00830f66f.png">  
 
 ## Windows PowerShell
 基本上如果是要在 windows powershell 上有這些功能，只要跟著官方提供的方式 ([教學課程：使用喔 My Posh 設定 PowerShell 或 WSL 的自訂提示](https://docs.microsoft.com/zh-tw/windows/terminal/tutorials/custom-prompt-setup#customize-your-powershell-prompt-with-oh-my-posh) 就可以完成了，大致步驟如下:

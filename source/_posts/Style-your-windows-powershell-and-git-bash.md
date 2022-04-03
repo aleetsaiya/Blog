@@ -26,9 +26,9 @@ code $PROFILE
 6. 在開啟的檔案中新增程式碼:
 ```powerShell
 Import-Module oh-my-posh
-Set-PoshPrompt -Theme powerlevel10k_rainbow
+Set-PoshPrompt -Theme paradox
 ```
-powerlevel10k_rainbow 是主題的名稱，也可以換成其它自己想要的主題
+paradox 是主題的名稱，也可以換成其它自己想要的主題
 
 > PowerShell 設定檔是在 PowerShell 啟動時執行的指令碼。您可以使用設定檔做為登入腳本來自訂環境。
  
@@ -41,12 +41,12 @@ powerlevel10k_rainbow 是主題的名稱，也可以換成其它自己想要的�
 2. 從 windows terminal 的設定中，點擊 *git bash* -> *外觀*，將文字改成下載的字體
 3. 在 `C:\Program Files\Git\usr\bin` 內，擺入 `oh-my-posh.exe`
 4. 在 git bash 上輸入 `$HOME`
-5. 在顯示的資料夾位置裡面加入自己想要的主題檔，像是我想要的主題叫做 *powerlevel10k_rainbow*，就可以從 [oh-my-posh themes](https://github.com/JanDeDobbeleer/oh-my-posh/tree/main/themes) 裡面找到名叫 [powerlevel10k_rainbow.omp.json](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_rainbow.omp.json) 的 json 檔。
+5. 在顯示的資料夾位置裡面加入自己想要的主題檔，像是我想要的主題叫做 *paradox*，就可以從 [oh-my-posh themes](https://github.com/JanDeDobbeleer/oh-my-posh/tree/main/themes) 裡面找到名叫 [paradox.omp.json](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/paradox.omp.json) 的 json 檔。
 6.在 `$HOME` 顯示的資料夾位置內建立 `.bashrc` 檔。
 7. 在 `.bashrc` 內輸入
 ```powershell
-eval "$(oh-my-posh init bash --config ~/powerlevel10k_rainbow.omp.json)"
+eval "$(oh-my-posh init bash --config ~/paradox.omp.json)"
 ```
-> `powerlevel10k_rainbow` 是主題的名稱，也可以換成其它自己想要的主題 
+> `paradox` 是主題的名稱，也可以換成其它自己想要的主題 
 
 接下來重新開啟 terminal 新的主題就會開始套用了喔!

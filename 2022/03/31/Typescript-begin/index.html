@@ -377,8 +377,110 @@ type Dog <span class="token operator">=</span> Animal <span class="token operato
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>基礎泛型就是打 <code>&lt;&gt;</code> 然後將我們期望的 type 傳進去</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> hello<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token punctuation">,</span> <span class="token constant">U</span><span class="token operator">></span><span class="token punctuation">(</span>text<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">,</span> <span class="token literal-property property">text2</span><span class="token operator">:</span> <span class="token constant">U</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>text<span class="token punctuation">,</span> text2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> text<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+hello<span class="token operator">&lt;</span>number<span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">,</span> <span class="token string">"alee"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+hello<span class="token operator">&lt;</span>boolean<span class="token punctuation">,</span> string<span class="token operator">></span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token string">"alee"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用 interface 搭配泛型:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">interface</span> <span class="token class-name">Card</span><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">title</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+  <span class="token literal-property property">desc</span><span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> printCardInfo<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span><span class="token punctuation">(</span>desc<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> Card<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> <span class="token literal-property property">data</span><span class="token operator">:</span> Card<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">"bruce"</span><span class="token punctuation">,</span>
+    desc<span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>為了確保泛型內擁有特定的 property，可以使用 <code>extends</code> 來幫我們確認傳入的泛型型態是擁有這個 property 的。<br>ex.</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 確保要傳入的型態含有 length</span>
+<span class="token keyword">function</span> logArrLen<span class="token operator">&lt;</span><span class="token constant">T</span> <span class="token keyword">extends</span> <span class="token class-name">Array</span><span class="token operator">&lt;</span>number<span class="token operator">>></span><span class="token punctuation">(</span>arr<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+logArrLen<span class="token operator">&lt;</span>Array<span class="token operator">&lt;</span>number<span class="token operator">>></span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在泛型中使用 <code>infer</code> 的意思是: 我們先檢查條件有沒有達成，如果達成了的話就會透過 <code>infer</code> 幫我們建立一個參數，沒達成就不會透過 <code>infer</code> 建立參數，直接變成我們設定的 else 參數。<br>ex.</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 檢查 T 是否有 extends Array，如果有的話建立參數 P (參數的值就是我們傳進去 Array 的值)</span>
+type Check<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token constant">T</span> <span class="token keyword">extends</span> <span class="token class-name">Array</span><span class="token operator">&lt;</span>infer <span class="token constant">P</span><span class="token operator">></span> <span class="token operator">?</span> <span class="token constant">P</span> <span class="token operator">:</span> never<span class="token punctuation">;</span>
+
+type <span class="token constant">Q</span> <span class="token operator">=</span> Check<span class="token operator">&lt;</span><span class="token punctuation">[</span>number<span class="token punctuation">]</span><span class="token operator">></span><span class="token punctuation">;</span> <span class="token comment">// type: number</span>
+type <span class="token constant">R</span> <span class="token operator">=</span> Check<span class="token operator">&lt;</span><span class="token punctuation">[</span><span class="token string">"alee"</span><span class="token punctuation">,</span> <span class="token number">123</span><span class="token punctuation">]</span><span class="token operator">></span><span class="token punctuation">;</span> <span class="token comment">//type: 'alee', 123</span>
+type <span class="token constant">G</span> <span class="token operator">=</span> Check<span class="token operator">&lt;</span>string<span class="token operator">></span><span class="token punctuation">;</span> <span class="token comment">// type: never</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="keyof"><a href="#keyof" class="headerlink" title="keyof"></a>keyof</h3><p>使用 <code>keyof</code> 可以獲得一個 type 的 keys 的 union。<br>ex.</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// keyof</span>
+<span class="token keyword">interface</span> <span class="token class-name">UserCard</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+  <span class="token literal-property property">age</span><span class="token operator">:</span> number<span class="token punctuation">;</span>
+  <span class="token literal-property property">cardTitle</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+  <span class="token literal-property property">cardDesc</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// type: name | age | cardTitle | cardDesc</span>
+type UserCardKeys <span class="token operator">=</span> keyof UserCard<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">key1</span><span class="token operator">:</span> UserCardKeys <span class="token operator">=</span> <span class="token string">"name"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token literal-property property">key2</span><span class="token operator">:</span> UserCardKeys <span class="token operator">=</span> <span class="token string">"cardTitle"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token literal-property property">key3</span><span class="token operator">:</span> UserCardKeys <span class="token operator">=</span> <span class="token string">"cardDesc"</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 確保 K 是 T 的其中一個 key</span>
+<span class="token keyword">function</span> getValue<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token punctuation">,</span> <span class="token constant">K</span> <span class="token keyword">extends</span> <span class="token class-name">keyof</span> <span class="token constant">T</span><span class="token operator">></span><span class="token punctuation">(</span>obj<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">,</span> <span class="token literal-property property">key</span><span class="token operator">:</span> <span class="token constant">K</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">[</span><span class="token constant">K</span><span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="ES6-ES-Module-vs-CommonJS"><a href="#ES6-ES-Module-vs-CommonJS" class="headerlink" title="ES6 ES-Module vs CommonJS"></a>ES6 ES-Module vs CommonJS</h2><ul>
+<li>CommonJS: 早期在開發 Node.js 的時候 Javascript 還沒有支援模組化的概念。使用 <code>require</code> 以及 <code>module.exports</code></li>
+<li>ES Module: ES6 新增的 Javascript 標準模組化方式。使用 <code>export</code> 以及 <code>import</code></li>
+</ul>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token string">"./index.css"</span><span class="token punctuation">;</span>
+
+<span class="token comment">// CommonJS -> Nodejs 開發</span>
+<span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"./commonJS"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// ES6 ES Module -> js標準</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> age<span class="token punctuation">,</span> userName <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"./es6Module"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> all <span class="token keyword">from</span> <span class="token string">"./es6Module"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
   <p> — Mar 31, 2022</p>
   
+  <hr>
+<section id="comments" class="mt-2 mb-3">
+
+  <div id="disqus_thread">
+    <a href="#" class="button button-primary" onclick="loadDisqus();return false;">View / Make Comments</a>
+  </div>
+
+  <script>
+    var disqus_config = function() {
+      this.page.url = 'https://aleetsaiya.github.io/2022/03/31/Typescript-begin/index.html';
+      this.page.identifier = '2022/03/31/Typescript-begin/index.html';
+      this.page.title = 'Typescript start';
+    };
+
+    var is_disqus_loaded = false;
+
+    function loadDisqus() {
+      if (!is_disqus_loaded) {
+        is_disqus_loaded = true;
+
+        var d = document,
+          s = d.createElement('script');
+        s.src = 'https://https-aleetsaiya-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+    }
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
 
 
         </div>

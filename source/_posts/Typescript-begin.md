@@ -43,7 +43,15 @@ docs: [Webpack Typescript](https://webpack.js.org/guides/typescript/)
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+
+    // path mapping
+    // 讓我們可以使用其他符號代表路徑
+    "baseUrl": "./src",
+    "paths": {
+      // @/* 代表 @/ 底下的東西會對應到 [baseUrl]/* (./src/)
+      "@/*": ["*"]
+    }
   }
 }
 ```
@@ -62,9 +70,14 @@ module.exports = {
       },
     ],
   },
-  // webpack 默認只會編譯 js 檔，設定 resolve 讓 webpack 能夠將 tsx 以及 ts 也被 webpack 編譯
   resolve: {
+    // webpack 默認只會編譯 js 檔，設定 resolve 讓 webpack 能夠將 tsx 以及 ts 也被 webpack 編譯
     extensions: ['.tsx', '.ts', '.js'],
+    // 要使用 path mapping 的話，要加 alias 以免 webpack 看不懂
+    // 設定 @ 對應到 src
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    }
   },
   output: {
     filename: 'bundle.js',
@@ -219,4 +232,114 @@ class Dog extends Animal {
     console.log("Hello");
   }
 }
+```
+
+### 泛型
+基礎泛型就是打 `<>` 然後將我們期望的 type 傳進去
+```js
+function hello<T, U>(text: T, text2: U): T {
+  console.log(text, text2);
+  return text;
+}
+
+hello<number, string>(123, "alee");
+hello<boolean, string>(true, "alee");
+```
+使用 interface 搭配泛型:
+```js
+interface Card<T> {
+  title: string;
+  desc: T;
+}
+
+function printCardInfo<T>(desc: T): Card<T> {
+  const data: Card<T> = {
+    title: "bruce",
+    desc,
+  };
+  return data;
+}
+```
+為了確保泛型內擁有特定的 property，可以使用 `extends` 來幫我們確認傳入的泛型型態是擁有這個 property 的。
+ex.
+```js
+// 確保要傳入的型態含有 length
+function logArrLen<T extends Array<number>>(arr: T) {
+  console.log(arr.length);
+}
+
+logArrLen<Array<number>>([1, 2, 3]);
+```
+
+在泛型中使用 `infer` 的意思是: 我們先檢查條件有沒有達成，如果達成了的話就會透過 `infer` 幫我們建立一個參數，沒達成就不會透過 `infer` 建立參數，直接變成我們設定的 else 參數。
+ex.
+```js
+// 檢查 T 是否有 extends Array，如果有的話建立參數 P (參數的值就是我們傳進去 Array 的值)
+type Check<T> = T extends Array<infer P> ? P : never;
+
+type Q = Check<[number]>; // type: number
+type R = Check<["alee", 123]>; //type: 'alee', 123
+type G = Check<string>; // type: never
+```
+
+### keyof
+使用 `keyof` 可以獲得一個 type 的 keys 的 union。
+ex.
+```js
+// keyof
+interface UserCard {
+  name: string;
+  age: number;
+  cardTitle: string;
+  cardDesc: string;
+}
+
+// type: name | age | cardTitle | cardDesc
+type UserCardKeys = keyof UserCard;
+
+const key1: UserCardKeys = "name";
+const key2: UserCardKeys = "cardTitle";
+const key3: UserCardKeys = "cardDesc";
+
+// 確保 K 是 T 的其中一個 key
+function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key];
+}
+```
+
+### Map
+```js
+type UserData = {
+  id: string;
+  userName: string;
+  roomName: string
+}
+
+export default class UserService {
+  private userMap: Map<string, UserData>
+
+  constructor() {
+    this.userMap = new Map()
+  }
+
+  addUser(data: UserData) {
+    this.userMap.set(data.id, data)
+  }
+}
+```
+
+## ES6 ES-Module vs CommonJS
+
++ CommonJS: 早期在開發 Node.js 的時候 Javascript 還沒有支援模組化的概念。使用 `require` 以及 `module.exports`
++ ES Module: ES6 新增的 Javascript 標準模組化方式。使用 `export` 以及 `import` 
+
+```js
+import "./index.css";
+
+// CommonJS -> Nodejs 開發
+const data = require("./commonJS");
+
+// ES6 ES Module -> js標準
+import { age, userName } from "./es6Module";
+import * as all from "./es6Module";
 ```

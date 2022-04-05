@@ -228,9 +228,17 @@
     <span class="token property">"target"</span><span class="token operator">:</span> <span class="token string">"es5"</span><span class="token punctuation">,</span>
     <span class="token property">"jsx"</span><span class="token operator">:</span> <span class="token string">"react"</span><span class="token punctuation">,</span>
     <span class="token property">"allowJs"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token property">"moduleResolution"</span><span class="token operator">:</span> <span class="token string">"node"</span>
+    <span class="token property">"moduleResolution"</span><span class="token operator">:</span> <span class="token string">"node"</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// path mapping</span>
+    <span class="token comment">// 讓我們可以使用其他符號代表路徑</span>
+    <span class="token property">"baseUrl"</span><span class="token operator">:</span> <span class="token string">"./src"</span><span class="token punctuation">,</span>
+    <span class="token property">"paths"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token comment">// @/* 代表 @/ 底下的東西會對應到 [baseUrl]/* (./src/)</span>
+      <span class="token property">"@/*"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"*"</span><span class="token punctuation">]</span>
+    <span class="token punctuation">&#125;</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li>設定 <code>webpack.config.js</code><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
@@ -244,15 +252,20 @@ module<span class="token punctuation">.</span>exports <span class="token operato
       <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
     <span class="token punctuation">]</span><span class="token punctuation">,</span>
   <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token comment">// webpack 默認只會編譯 js 檔，設定 resolve 讓 webpack 能夠將 tsx 以及 ts 也被 webpack 編譯</span>
   <span class="token literal-property property">resolve</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// webpack 默認只會編譯 js 檔，設定 resolve 讓 webpack 能夠將 tsx 以及 ts 也被 webpack 編譯</span>
     <span class="token literal-property property">extensions</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'.tsx'</span><span class="token punctuation">,</span> <span class="token string">'.ts'</span><span class="token punctuation">,</span> <span class="token string">'.js'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token comment">// 要使用 path mapping 的話，要加 alias 以免 webpack 看不懂</span>
+    <span class="token comment">// 設定 @ 對應到 src</span>
+    <span class="token literal-property property">alias</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token string-property property">'@'</span><span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'src'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
   <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
   <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
     <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'bundle.js'</span><span class="token punctuation">,</span>
     <span class="token literal-property property">path</span><span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
 <blockquote>
 <p>ts-loader uses tsc, the TypeScript compiler, and relies on your tsconfig.json configuration. Make sure to avoid setting module to “CommonJS”, or webpack won’t be able to <strong>tree-shake</strong> your code.</p>
@@ -435,6 +448,24 @@ type UserCardKeys <span class="token operator">=</span> keyof UserCard<span clas
   <span class="token keyword">return</span> obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><pre class="line-numbers language-js" data-language="js"><code class="language-js">type UserData <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">id</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+  <span class="token literal-property property">userName</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+  <span class="token literal-property property">roomName</span><span class="token operator">:</span> string
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">UserService</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">private</span> <span class="token literal-property property">userMap</span><span class="token operator">:</span> Map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> UserData<span class="token operator">></span>
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>userMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token function">addUser</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">data</span><span class="token operator">:</span> UserData</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>userMap<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>id<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="ES6-ES-Module-vs-CommonJS"><a href="#ES6-ES-Module-vs-CommonJS" class="headerlink" title="ES6 ES-Module vs CommonJS"></a>ES6 ES-Module vs CommonJS</h2><ul>
 <li>CommonJS: 早期在開發 Node.js 的時候 Javascript 還沒有支援模組化的概念。使用 <code>require</code> 以及 <code>module.exports</code></li>
 <li>ES Module: ES6 新增的 Javascript 標準模組化方式。使用 <code>export</code> 以及 <code>import</code></li>
@@ -447,6 +478,7 @@ type UserCardKeys <span class="token operator">=</span> keyof UserCard<span clas
 <span class="token comment">// ES6 ES Module -> js標準</span>
 <span class="token keyword">import</span> <span class="token punctuation">&#123;</span> age<span class="token punctuation">,</span> userName <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"./es6Module"</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> all <span class="token keyword">from</span> <span class="token string">"./es6Module"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
   <p> — Mar 31, 2022</p>
   
 

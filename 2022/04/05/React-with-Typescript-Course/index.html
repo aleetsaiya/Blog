@@ -11,38 +11,34 @@
   <meta charset="utf-8">
 
   
-  <title>Coding Blog</title>
+  <title>React with Typescript Course</title>
   
-  <link rel="canonical" href="https://aleetsaiya.github.io/page/3/">
+  <link rel="canonical" href="https://aleetsaiya.github.io/2022/04/05/React-with-Typescript-Course/">
   
-  <meta name="description" content="Record my coding learning experience">
+  <meta name="description" content="Bruce Typescript + React 課程筆記 Setup npx create-react-app my-app --template typescript npm install --save-dev eslint prettier prettier-eslint add eslin">
   
   
   <meta name="author" content="Alee Tsai">
   
   
-  <meta property="og:image" content="https://aleetsaiya.github.io/images/thumbnail.jpg">
-  
   
   <meta property="og:site_name" content="Coding Blog" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Coding Blog" />
+  <meta property="og:title" content="React with Typescript Course" />
   
-  <meta property="og:description" content="Record my coding learning experience">
+  <meta property="og:description" content="Bruce Typescript + React 課程筆記 Setup npx create-react-app my-app --template typescript npm install --save-dev eslint prettier prettier-eslint add eslin">
   
-  <meta property="og:url" content="https://aleetsaiya.github.io/page/3/" />
+  <meta property="og:url" content="https://aleetsaiya.github.io/2022/04/05/React-with-Typescript-Course/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Coding Blog">
+  <meta name="twitter:title" content="React with Typescript Course">
   
-  <meta name="twitter:description" content="Record my coding learning experience">
-  
-  
-  
-  <meta name="twitter:image" content="https://aleetsaiya.github.io/images/thumbnail.jpg">
+  <meta name="twitter:description" content="Bruce Typescript + React 課程筆記 Setup npx create-react-app my-app --template typescript npm install --save-dev eslint prettier prettier-eslint add eslin">
   
   
-  <meta name="twitter:url" content="https://aleetsaiya.github.io/page/3/" />
+  
+  
+  <meta name="twitter:url" content="https://aleetsaiya.github.io/2022/04/05/React-with-Typescript-Course/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -201,98 +197,50 @@
 </div>
 
         <div class="trans">
-          <div class="row">
-  <div class="column">
-    <!-- Main information, edit it on theme/_config.yml -->
-    <h2 class="mb-2">I am Hsueh-Ya (Alee), Tsai</h2>
-    <p>A Computer Science student who wants to be a Front-End engineer from Taiwan.👨‍💻</p>
-    <p>This is my coding blog. I will share my learning experience about coding on this site. You can visit About page if you want to know more about me, hope you enjoy! 😁</p>
-  </div>
-</div>
+            <h2>React with Typescript Course</h2>
 
-<h3>Recent Posts</h3>
+  <p>Bruce Typescript + React 課程筆記</p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
+<li><code>npx create-react-app my-app --template typescript</code></li>
+<li><code>npm install --save-dev eslint prettier prettier-eslint</code></li>
+<li>add eslint init scripts to <code>package.json</code><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// eslint --init</span>
+    <span class="token property">"eslint--init"</span><span class="token operator">:</span> <span class="token string">"eslint --init"</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>npm run eslint--init</code></li>
+</ol>
+<blockquote>
+<p>npm run eject 可以在我們 create-react-app 後顯示出被隱藏的 webpack 等設定檔</p>
+</blockquote>
+<h2 id="Create-Functional-Component-with-TS"><a href="#Create-Functional-Component-with-TS" class="headerlink" title="Create Functional Component with TS"></a>Create Functional Component with TS</h2><p>Functional Component 在 Typescript 裡面的 type 為 <code>React.FunctionComponent</code>，也可以簡化成 <code>React.FC</code>。</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
 
+<span class="token keyword">const</span> <span class="token literal-property property">App</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FunctionComponent</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">Hello World!</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token punctuation">&#125;</span>
 
-<div class="row">
+<span class="token keyword">export</span> <span class="token keyword">default</span> App<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-  <div class="three columns left lit">
-    <p class="bottom">Apr 5, 2022</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2022/04/05/React-with-Typescript-Course/" >
-      
-        React with Typescript Course
-      
-    </a>
-  </div>
-</div>
+<hr>
+<h2 id="Concepts-amp-Tips"><a href="#Concepts-amp-Tips" class="headerlink" title="Concepts &amp; Tips"></a>Concepts &amp; Tips</h2><ul>
+<li>放在 <code>public</code> folder 底下的資源都會預設放在根目錄底下形成一個靜態資源</li>
+<li><code>&lt;React.Fragment/&gt;</code> 可以直接用 <code>&lt;&gt;</code> <code>&lt;/&gt;</code> 來替代</li>
+</ul>
+<hr>
+<h2 id="React-網站-render-過程"><a href="#React-網站-render-過程" class="headerlink" title="React 網站 render 過程"></a>React 網站 render 過程</h2><ol start="0">
+<li>在我們將程式上架到 Server 的時候，Server 會將我們寫的 typescript 構建 (build) 成 <code>index.html</code>, <code>main.js</code> 以及 <code>main.css</code> …。</li>
+<li>Client 在瀏覽器上對 server 發出請求 (Http request)</li>
+<li>根據 client 送出的請求找到對應的路由 (<code>/</code> or <code>/about</code> or <code>/works</code> …) ，server 根據路由回傳對應的 <code>index.html</code>, <code>main.js</code>, <code>main.css</code> …</li>
+<li>瀏覽器接收到 server 傳來的 response，解析 html (空白的 html) 並處理 js (包含 react 的內容)，然後開始執行 <code>ReactDom.render()</code></li>
+<li><code>ReactDom.render()</code> 將 html 渲染到 <code>&lt;div id=&quot;root&quot;&gt;</code></li>
+</ol>
 
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">Apr 5, 2022</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2022/04/05/CSR-vs-SSR/" >
-      
-        CSR vs SSR
-      
-    </a>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">Apr 2, 2022</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2022/04/02/Style-your-windows-powershell-and-git-bash/" >
-      
-        Style your windows powershell and git bash
-      
-    </a>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">Mar 31, 2022</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2022/03/31/Webpack-start/" >
-      
-        Webpack start
-      
-    </a>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">Mar 31, 2022</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2022/03/31/Typescript-begin/" >
-      
-        Typescript start
-      
-    </a>
-  </div>
-</div>
+  <p> — Apr 5, 2022</p>
+  
 
 
-<h4> <a href="/archives">All Posts</a></h4>
-
-<div class="row mt-2">
-  <h3>Search</h3>
-  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
-  <div style="margin-top: 1.5rem;">
-    <ul id="result"></ul>
-  </div>
-</div>
         </div>
         <div class="row mt-2">
   

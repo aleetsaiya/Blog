@@ -236,7 +236,294 @@
 <li>瀏覽器接收到 server 傳來的 response，解析 html (空白的 html) 並處理 js (包含 react 的內容)，然後開始執行 <code>ReactDom.render()</code></li>
 <li><code>ReactDom.render()</code> 將 html 渲染到 <code>&lt;div id=&quot;root&quot;&gt;</code></li>
 </ol>
+<hr>
+<h2 id="Styled-Component-with-Typescript"><a href="#Styled-Component-with-Typescript" class="headerlink" title="Styled-Component with Typescript"></a>Styled-Component with Typescript</h2><h3 id="Setup-1"><a href="#Setup-1" class="headerlink" title="Setup:"></a>Setup:</h3><ol>
+<li><code>npm install --save styled-components</code></li>
+<li><code>npm install --save @types/styled-components</code> (如果要用 Typescript)</li>
+<li>Create styled-component <blockquote>
+<p>可以在 vscode 下載 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components">vscode-styled-components</a> 讓我們能在他定義寫法下有 highlight</p>
+</blockquote>
+</li>
+</ol>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token keyword">import</span> <span class="token string">'./App.css'</span>
+<span class="token keyword">import</span> styled <span class="token keyword">from</span> <span class="token string">'styled-components'</span>
 
+<span class="token comment">// 定義 styled-component 的 props</span>
+type ButtonProps <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">colorStatus</span><span class="token operator">:</span> boolean
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 建立 styled-component</span>
+<span class="token keyword">const</span> Button <span class="token operator">=</span> styled<span class="token punctuation">.</span>button<span class="token operator">&lt;</span>ButtonProps<span class="token operator">></span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+  background: transparent;
+  border-radius: 3px;
+  border: 2px solid palevioletred;
+  color: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>props<span class="token punctuation">.</span>colorStatus <span class="token operator">===</span> <span class="token boolean">false</span> <span class="token operator">?</span> <span class="token string">'black'</span> <span class="token operator">:</span> <span class="token string">'red'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">;
+  margin: 0 1em;
+  padding: 0.25em 1em;
+</span><span class="token template-punctuation string">`</span></span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">App</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>Button colorStatus<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token boolean">false</span><span class="token punctuation">&#125;</span><span class="token operator">></span>Click<span class="token operator">&lt;</span><span class="token operator">/</span>Button<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> App<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<h2 id="自己建立-Hook"><a href="#自己建立-Hook" class="headerlink" title="自己建立 Hook"></a>自己建立 Hook</h2><p><a target="_blank" rel="noopener" href="https://zh-hant.reactjs.org/docs/hooks-custom.html">React docs</a></p>
+<p>要用 <code>use</code> 開頭來命名 hook，不然就無法起到 hook 的檢查機制。</p>
+<p>課堂中示範自己建立一個 HOC (High Order Function) 的 Hook:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> useState <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+
+<span class="token comment">// 定義如何計算出 score</span>
+<span class="token keyword">function</span> <span class="token function">getCurrentSocre</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token number">100</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">getScoreByBoardName</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">boardName</span><span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>boardName <span class="token operator">===</span> <span class="token string">'boardA'</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">200</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>boardName <span class="token operator">===</span> <span class="token string">'boardB'</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">1000</span>
+  <span class="token keyword">return</span> <span class="token number">0</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 自定義 HOC hook (High Order Function)</span>
+<span class="token keyword">function</span> <span class="token function">useScore</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">boardName</span><span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>socre<span class="token punctuation">,</span> setScore<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span>
+    <span class="token function">getCurrentSocre</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">getScoreByBoardName</span><span class="token punctuation">(</span>boardName<span class="token punctuation">)</span>
+  <span class="token punctuation">)</span>
+  <span class="token comment">// 回傳 score 以及 setScore 並定義他們的 type</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span>socre<span class="token punctuation">,</span> setScore<span class="token punctuation">]</span> <span class="token keyword">as</span> <span class="token punctuation">[</span>
+    number<span class="token punctuation">,</span>
+    React<span class="token punctuation">.</span>Dispatch<span class="token operator">&lt;</span>React<span class="token punctuation">.</span>SetStateAction<span class="token operator">&lt;</span>number<span class="token operator">>></span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">ScoreBoardA</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>score<span class="token punctuation">,</span> setScore<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useScore</span><span class="token punctuation">(</span><span class="token string">'boardA'</span><span class="token punctuation">)</span>
+  <span class="token comment">// 使用回傳回來的 setSocre 對 score 進行更新</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">handlePlus</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token function">setScore</span><span class="token punctuation">(</span>score <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>p<span class="token operator">></span>Total Score<span class="token operator">:</span> <span class="token punctuation">&#123;</span>score<span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
+      <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">&#123;</span>handlePlus<span class="token punctuation">&#125;</span><span class="token operator">></span>Plus<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">ScoreBoardB</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// eslint-disable-next-line</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>score<span class="token punctuation">,</span> setScore<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useScore</span><span class="token punctuation">(</span><span class="token string">'boardB'</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token operator">&lt;</span>p<span class="token operator">></span>Total Score<span class="token operator">:</span> <span class="token punctuation">&#123;</span>score<span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h2 id="使用-UseEffect-結合-API-Request"><a href="#使用-UseEffect-結合-API-Request" class="headerlink" title="使用 UseEffect 結合 API Request"></a>使用 UseEffect 結合 API Request</h2><blockquote>
+<p>範例中使用 json placeholder 來模擬與後端 fetch 資料的情形</p>
+</blockquote>
+<p>使用 <code>useEffect</code>，在 ComponentDidMount 的時候獲取 data:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 定義 API request 回傳的資料型態</span>
+type Comment <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">postId</span><span class="token operator">:</span> number
+  <span class="token literal-property property">id</span><span class="token operator">:</span> number
+  <span class="token literal-property property">name</span><span class="token operator">:</span> string
+  <span class="token literal-property property">email</span><span class="token operator">:</span> string
+  <span class="token literal-property property">body</span><span class="token operator">:</span> string
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">App</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 在接收到 data 的時候定義接收到的資料型態</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'https://jsonplaceholder.typicode.com/comments?postId=1'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=></span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">data</span><span class="token operator">:</span> Comment<span class="token punctuation">[</span><span class="token punctuation">]</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>將 <code>fetch</code> 拿到 <code>useEffect</code> 外，自己寫一個 async function 並透過斷言 (assertion) 來去指定型態</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js">type Comment <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">postId</span><span class="token operator">:</span> number
+  <span class="token literal-property property">id</span><span class="token operator">:</span> number
+  <span class="token literal-property property">name</span><span class="token operator">:</span> string
+  <span class="token literal-property property">email</span><span class="token operator">:</span> string
+  <span class="token literal-property property">body</span><span class="token operator">:</span> string
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">App</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 定義 async function </span>
+  <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">fetchData</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>
+      <span class="token string">'https://jsonplaceholder.typicode.com/comments?postId=1'</span>
+    <span class="token punctuation">)</span>
+    <span class="token comment">// Use assertion to define type of data</span>
+    <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">await</span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">as</span> Comment
+    <span class="token keyword">return</span> data
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>使用 <code>useEffect</code> 結合更換 id (頁數) 獲得不同 data、控制錯誤處理以及 loading status:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js">type Comment <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">postId</span><span class="token operator">:</span> number
+  <span class="token literal-property property">id</span><span class="token operator">:</span> number
+  <span class="token literal-property property">name</span><span class="token operator">:</span> string
+  <span class="token literal-property property">email</span><span class="token operator">:</span> string
+  <span class="token literal-property property">body</span><span class="token operator">:</span> string
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">App</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>postId<span class="token punctuation">,</span> setPostId<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token comment">// 設定 error types 為 null 或是 Error</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>error<span class="token punctuation">,</span> setError<span class="token punctuation">]</span> <span class="token operator">=</span> useState<span class="token operator">&lt;</span>Error <span class="token operator">|</span> <span class="token keyword">null</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>loading<span class="token punctuation">,</span> setLoading<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// 定義 async function 獲得 data </span>
+  <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">fetchData</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">id</span><span class="token operator">:</span> number</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 開始 fetch 時，設 loading 為 true</span>
+    <span class="token function">setLoading</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">https://jsonplaceholder.typicode.com/comments?postId=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>id<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span>
+      <span class="token punctuation">)</span>
+      <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">await</span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">as</span> Comment
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">setError</span><span class="token punctuation">(</span>error <span class="token keyword">as</span> Error<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 結束時設為 false</span>
+    <span class="token function">setLoading</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">// 當 postId 變動的時候，useEffect 會觸發並 fetchData</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token function">fetchData</span><span class="token punctuation">(</span>postId<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>postId<span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<h2 id="將處理-API-相關的程序自定義成一個-Hook"><a href="#將處理-API-相關的程序自定義成一個-Hook" class="headerlink" title="將處理 API 相關的程序自定義成一個 Hook"></a>將處理 API 相關的程序自定義成一個 Hook</h2><p>將與 API 相關的程序從原本的 Component 提取出來，可以讓 Component 更能夠專注在他的工作上面。</p>
+<p>完整程式碼:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> useState<span class="token punctuation">,</span> useEffect <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+
+<span class="token comment">// 定義從 API Request 回傳回來的 data type</span>
+type Comment <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">postId</span><span class="token operator">:</span> number
+  <span class="token literal-property property">id</span><span class="token operator">:</span> number
+  <span class="token literal-property property">name</span><span class="token operator">:</span> string
+  <span class="token literal-property property">email</span><span class="token operator">:</span> string
+  <span class="token literal-property property">body</span><span class="token operator">:</span> string
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 自定義一個 Hook</span>
+<span class="token keyword">function</span> <span class="token function">useFetchApi</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// postId:   要抓 API 裡面的哪一塊資料 (page)</span>
+  <span class="token comment">// error:    當 error 發生時會從原本的 null 變成 type of Error</span>
+  <span class="token comment">// loading:  處理 loading status</span>
+  <span class="token comment">// data:     從 api request 獲得的 data</span>
+
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>postId<span class="token punctuation">,</span> setPostId<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>error<span class="token punctuation">,</span> setError<span class="token punctuation">]</span> <span class="token operator">=</span> useState<span class="token operator">&lt;</span>Error <span class="token operator">|</span> <span class="token keyword">null</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>loading<span class="token punctuation">,</span> setLoading<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> setData<span class="token punctuation">]</span> <span class="token operator">=</span> useState<span class="token operator">&lt;</span>Comment<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">fetchData</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">id</span><span class="token operator">:</span> number</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">setLoading</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">https://jsonplaceholder.typicode.com/comments?postId=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>id<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span>
+      <span class="token punctuation">)</span>
+      <span class="token keyword">const</span> resData <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">await</span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">as</span> Comment<span class="token punctuation">[</span><span class="token punctuation">]</span>
+      <span class="token function">setData</span><span class="token punctuation">(</span>resData<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">setError</span><span class="token punctuation">(</span>error <span class="token keyword">as</span> Error<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">setLoading</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">// 當 postId 發生變動時，重新 fetchData</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token function">fetchData</span><span class="token punctuation">(</span>postId<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>postId<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> loading<span class="token punctuation">,</span> error<span class="token punctuation">,</span> setPostId<span class="token punctuation">]</span> <span class="token keyword">as</span> <span class="token keyword">const</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">App</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// data, loading, error 因為都是 state，會隨著我們呼叫 setPostId 而改變</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> loading<span class="token punctuation">,</span> error<span class="token punctuation">,</span> setPostId<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useFetchApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">function</span> <span class="token function">handleClick</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">id</span><span class="token operator">:</span> number</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">setPostId</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>h1<span class="token operator">></span>Fetch <span class="token constant">API</span><span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">></span>
+      <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">handleClick</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token operator">></span>Id <span class="token number">1</span> data<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+      <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">handleClick</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token operator">></span>Id <span class="token number">2</span> data<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+
+      <span class="token punctuation">&#123;</span>error <span class="token operator">===</span> <span class="token keyword">null</span>
+        <span class="token operator">?</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>p style<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">color</span><span class="token operator">:</span> <span class="token string">'green'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token operator">></span>資料獲取成功<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
+          <span class="token punctuation">)</span>
+        <span class="token operator">:</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>p style<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">color</span><span class="token operator">:</span> <span class="token string">'red'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token operator">></span>資料獲取失敗<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
+          <span class="token punctuation">)</span><span class="token punctuation">&#125;</span>
+      <span class="token punctuation">&#123;</span>loading <span class="token operator">?</span> <span class="token operator">&lt;</span>p<span class="token operator">></span>loading<span class="token operator">...</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span> <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">&#125;</span>
+      <span class="token operator">&lt;</span>p<span class="token operator">></span>結果<span class="token operator">:</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
+      <span class="token punctuation">&#123;</span>data<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">&lt;</span>p key<span class="token operator">=</span><span class="token punctuation">&#123;</span>item<span class="token punctuation">.</span>id<span class="token punctuation">&#125;</span><span class="token operator">></span><span class="token punctuation">&#123;</span>item<span class="token punctuation">.</span>email<span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> App
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<h2 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h2><p><code>useRef</code> 與 <code>useState</code> 的其中一個差別在: <code>useRef</code> 在更新其值的時候不會觸發畫面的重新渲染，而 <code>useState</code> 在更新其值得時候會使畫面重新渲染。</p>
+<blockquote>
+<p>React會確保 useRef 回傳出來的這個物件不會因為 React 元件更新而被重新創造。所以當我們的 component re-render 時，ref.current 的值不會被改變</p>
+</blockquote>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> <span class="token literal-property property">App</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>hidden<span class="token punctuation">,</span> setHidden<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> sumRef <span class="token operator">=</span> <span class="token function">useRef</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">function</span> <span class="token function">click</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    sumRef<span class="token punctuation">.</span>current <span class="token operator">=</span> sumRef<span class="token punctuation">.</span>current <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>sumRef<span class="token punctuation">.</span>current <span class="token operator">>=</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">setHidden</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>h1<span class="token operator">></span>Ref<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">></span>
+      <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">&#123;</span>click<span class="token punctuation">&#125;</span><span class="token operator">></span><span class="token operator">+</span><span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+      <span class="token punctuation">&#123;</span><span class="token operator">!</span>hidden <span class="token operator">&amp;&amp;</span> <span class="token operator">&lt;</span>div<span class="token operator">></span>被隱藏的區塊<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span class="token punctuation">&#125;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>使用 <code>useRef</code> 來達成 <code>document.querySelector</code> 的效果:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> <span class="token literal-property property">App</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> h1Ref <span class="token operator">=</span> useRef<span class="token operator">&lt;</span>HTMLHeadingElement<span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>
+
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 相較於使用: const h1 = document.querySelector('h1')</span>
+    <span class="token keyword">const</span> h1 <span class="token operator">=</span> h1Ref<span class="token punctuation">.</span>current
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>h1<span class="token punctuation">)</span> <span class="token comment">// log: &lt;h1>My page title&lt;/h1></span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> <span class="token operator">&lt;</span>h1 ref<span class="token operator">=</span><span class="token punctuation">&#123;</span>h1Ref<span class="token punctuation">&#125;</span><span class="token operator">></span>My page title<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">></span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
   <p> — Apr 5, 2022</p>
   
 

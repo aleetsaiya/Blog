@@ -62,7 +62,7 @@ module.exports {
 ```json
 "scripts": {
   // create a local server   
-  "dev": "webpack server"
+  "dev": "webpack serve"
 }
 ```
 -------------------------

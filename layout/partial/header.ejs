@@ -17,11 +17,20 @@
           } else {
             lightBtn.style.display = "none"
             darkBtn.style.display = "block"
-            localStorage.removeItem('preferredTheme');
+            localStorage.setItem('preferredTheme', 'light');
           }
           document.body.classList.toggle("darkmode");
         }
       </script>
+      <% if (theme.default_theme){ %>
+        <script>
+          if (!localStorage.getItem('preferredTheme')) {
+            const theme = '<%= theme.default_theme %>'
+            if (theme === 'dark')
+              setDarkMode(true)
+          }
+        </script>
+      <% } %>
     </h1>
   </div>
 

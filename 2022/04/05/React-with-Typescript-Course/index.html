@@ -158,11 +158,20 @@
           } else {
             lightBtn.style.display = "none"
             darkBtn.style.display = "block"
-            localStorage.removeItem('preferredTheme');
+            localStorage.setItem('preferredTheme', 'light');
           }
           document.body.classList.toggle("darkmode");
         }
       </script>
+      
+        <script>
+          if (!localStorage.getItem('preferredTheme')) {
+            const theme = 'dark'
+            if (theme === 'dark')
+              setDarkMode(true)
+          }
+        </script>
+      
     </h1>
   </div>
 
@@ -524,6 +533,81 @@ type Comment <span class="token operator">=</span> <span class="token punctuatio
 
   <span class="token keyword">return</span> <span class="token operator">&lt;</span>h1 ref<span class="token operator">=</span><span class="token punctuation">&#123;</span>h1Ref<span class="token punctuation">&#125;</span><span class="token operator">></span>My page title<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">></span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h2><p>能夠有效幫助我們減少上層 Component 傳遞給下層 Component 的參數。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> createContext<span class="token punctuation">,</span> useState<span class="token punctuation">,</span> useContext <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+
+<span class="token comment">// 定義初始值</span>
+<span class="token keyword">const</span> defaultValue <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">btnVisible</span><span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 建立 Context</span>
+<span class="token keyword">const</span> BtnContext <span class="token operator">=</span> <span class="token function">createContext</span><span class="token punctuation">(</span>defaultValue<span class="token punctuation">)</span>
+
+<span class="token comment">// 建立 Provider ( 需要包裹住 Consumer )</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token literal-property property">BtnProvider</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">&#123;</span> children <span class="token punctuation">&#125;</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>btnVisible<span class="token punctuation">,</span> setBtnVisible<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>BtnContext<span class="token punctuation">.</span>Provider value<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> btnVisible <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token operator">></span><span class="token punctuation">&#123;</span>children<span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>BtnContext<span class="token punctuation">.</span>Provider<span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 建立 Consumer</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">useBtnContext</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token function">useContext</span><span class="token punctuation">(</span>BtnContext<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="useMemo-useCallback"><a href="#useMemo-useCallback" class="headerlink" title="useMemo, useCallback"></a>useMemo, useCallback</h2><p>在 javascript 中比較一個 object 是否相同時，如果我們宣告兩個內容一樣的 object，進行 <code>===</code> 比較，會發現他們比較結果是 <code>false</code></p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> obj1 <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token keyword">const</span> obj2 <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1 <span class="token operator">===</span> obj2<span class="token punctuation">)</span> <span class="token comment">// false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>如果我們在 React Component 內宣告 function 或是 object 的話，在 React 每次 re-render 的時候都會重新建立一個新的 object &#x2F; function。所以這時如果我們要判斷 object 是否改變的話，判斷結果就一定會是有改變的。所以這時就能使用 <code>useMemo</code> 以及 <code>useCallback</code> 來幫我們解決這個問題。</p>
+<blockquote>
+<p><code>useMemo</code> 主要用來處理 Object，<code>useCallback</code> 用來處理 function</p>
+</blockquote>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> <span class="token literal-property property">App</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>value<span class="token punctuation">,</span> setValue<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// common object</span>
+  <span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'alee'</span> <span class="token punctuation">&#125;</span>
+  
+  <span class="token comment">// common function</span>
+  <span class="token keyword">function</span> <span class="token function">fun</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'yo'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">// wrap into useMemo, useCallback</span>
+  <span class="token keyword">const</span> memoObj <span class="token operator">=</span> <span class="token function">useMemo</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> obj<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> memoFunc <span class="token operator">=</span> <span class="token function">useCallback</span><span class="token punctuation">(</span>fun<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// this will execute when re-render</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'obj in effect'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>obj<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// this won't execute when re-render</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'memoObj in effect'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>memoObj<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// this will execute when re-render</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'fun in effect'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>fun<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// this won't execute when re-render</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'memoFunc in effect'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>memoFunc<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>h1<span class="token operator">></span>Testing<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">></span>
+      <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setValue</span><span class="token punctuation">(</span><span class="token operator">!</span>value<span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token operator">></span>Click me to re<span class="token operator">-</span>render<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
   <p> — Apr 5, 2022</p>
   
 

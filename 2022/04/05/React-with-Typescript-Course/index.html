@@ -15,7 +15,7 @@
   
   <link rel="canonical" href="https://aleetsaiya.github.io/2022/04/05/React-with-Typescript-Course/">
   
-  <meta name="description" content="Bruce Typescript + React 課程筆記 Setup npx create-react-app my-app --template typescript npm install --save-dev eslint prettier prettier-eslint add eslin">
+  <meta name="description" content="Bruce Typescript + React 課程筆記 Content Setup Create Functional Component with TS React 網站 render 過程 Styled-Component with Typescript 自己建立Hook 使用 UseEff">
   
   
   <meta name="author" content="Alee Tsai">
@@ -26,14 +26,14 @@
   <meta property="og:type" content="article" />
   <meta property="og:title" content="React with Typescript Course" />
   
-  <meta property="og:description" content="Bruce Typescript + React 課程筆記 Setup npx create-react-app my-app --template typescript npm install --save-dev eslint prettier prettier-eslint add eslin">
+  <meta property="og:description" content="Bruce Typescript + React 課程筆記 Content Setup Create Functional Component with TS React 網站 render 過程 Styled-Component with Typescript 自己建立Hook 使用 UseEff">
   
   <meta property="og:url" content="https://aleetsaiya.github.io/2022/04/05/React-with-Typescript-Course/" />
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="React with Typescript Course">
   
-  <meta name="twitter:description" content="Bruce Typescript + React 課程筆記 Setup npx create-react-app my-app --template typescript npm install --save-dev eslint prettier prettier-eslint add eslin">
+  <meta name="twitter:description" content="Bruce Typescript + React 課程筆記 Content Setup Create Functional Component with TS React 網站 render 過程 Styled-Component with Typescript 自己建立Hook 使用 UseEff">
   
   
   
@@ -209,6 +209,19 @@
             <h2>React with Typescript Course</h2>
 
   <p>Bruce Typescript + React 課程筆記</p>
+<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><ul>
+<li><a href="#Setup">Setup</a></li>
+<li><a href="#Create-Functional-Component-with-TS">Create Functional Component with TS</a></li>
+<li><a href="#React-%E7%B6%B2%E7%AB%99-render-%E9%81%8E%E7%A8%8B">React 網站 render 過程</a></li>
+<li><a href="#Styled-Component-with-Typescript">Styled-Component with Typescript</a></li>
+<li><a href="#%E8%87%AA%E5%B7%B1%E5%BB%BA%E7%AB%8B-Hook">自己建立Hook</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-UseEffect-%E7%B5%90%E5%90%88-API-Request">使用 UseEffect 結合 API Request</a></li>
+<li><a href="#%E5%B0%87%E8%99%95%E7%90%86-API-%E7%9B%B8%E9%97%9C%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E7%BE%A9%E6%88%90%E4%B8%80%E5%80%8B-Hook">將處理 API 相關的程序自定義成一個 Hook</a></li>
+<li><a href="#useRef">useRef</a></li>
+<li><a href="#useContext">useContext</a></li>
+<li><a href="#useMemo-useCallback">useMemo, useCallback</a></li>
+<li><a href="#useRoutes">useRoutes</a></li>
+</ul>
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
 <li><code>npx create-react-app my-app --template typescript</code></li>
 <li><code>npm install --save-dev eslint prettier prettier-eslint</code></li>
@@ -608,6 +621,69 @@ console<span class="token punctuation">.</span><span class="token function">log<
     <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
   <span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="useRoutes"><a href="#useRoutes" class="headerlink" title="useRoutes"></a>useRoutes</h2><p><code>useRoutes</code> 是由 react-router-dom 所提供的一個 Hook，可以幫助我們建立 router config。底下範例介紹如何使用 react-router-dom 所提供的 <code>useRoutes</code>, <code>Outlet</code>, <code>RouteObject</code>, <code>useParams</code>, <code>Link</code>。</p>
+<h3 id="建立各個-Page-的-Component"><a href="#建立各個-Page-的-Component" class="headerlink" title="建立各個 Page 的 Component:"></a>建立各個 Page 的 Component:</h3><p>Outlet 指定子 Component 出現在父 Component 的位置，這邊範例中的子 Component 是 <Item/></p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span>
+  Outlet<span class="token punctuation">,</span>
+  useParams<span class="token punctuation">,</span>
+  Link
+<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react-router-dom'</span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">Home</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token operator">&lt;</span>h1<span class="token operator">></span>Home<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">></span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">About</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>h1<span class="token operator">></span>
+      About <span class="token operator">&lt;</span>Link to<span class="token operator">=</span><span class="token string">"/about/1"</span><span class="token operator">></span>Go to id <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">/</span>Link<span class="token operator">></span>
+      <span class="token punctuation">&#123;</span><span class="token comment">/* Outlet 指定子 Component 出現在父 Component 的位置，這邊範例中的子 Component 是 &lt;Item/> */</span><span class="token punctuation">&#125;</span>
+      <span class="token operator">&lt;</span>Outlet <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">Item</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> id <span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token function">useParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token operator">&lt;</span>p<span class="token operator">></span>Item<span class="token operator">:</span> <span class="token punctuation">&#123;</span>id<span class="token punctuation">&#125;</span> <span class="token keyword">in</span> about page<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">Nomatch</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token operator">&lt;</span>h1<span class="token operator">></span>No match<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">></span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="建立-router-config"><a href="#建立-router-config" class="headerlink" title="建立 router config:"></a>建立 router config:</h3><p>( useRoutes 會接收 RouteObject[] 的型態，所以我們從 react-router-dom 匯入 RouteObject )</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span>
+  RouteObject<span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react-router-dom'</span>
+
+<span class="token comment">// useRoutes 會接收 RouteObject[] 的型態，所以我們從 react-router-dom 匯入 RouteObject</span>
+<span class="token keyword">const</span> <span class="token literal-property property">routerConfig</span><span class="token operator">:</span> RouteObject<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">element</span><span class="token operator">:</span> <span class="token operator">&lt;</span>Home <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/about'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">element</span><span class="token operator">:</span> <span class="token operator">&lt;</span>About <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span>
+    <span class="token literal-property property">children</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">':id'</span><span class="token punctuation">,</span> <span class="token literal-property property">element</span><span class="token operator">:</span> <span class="token operator">&lt;</span>Item <span class="token operator">/</span><span class="token operator">></span> <span class="token punctuation">&#125;</span><span class="token punctuation">]</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'*'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">element</span><span class="token operator">:</span> <span class="token operator">&lt;</span>Nomatch <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="將-routerConfig-擺入-App"><a href="#將-routerConfig-擺入-App" class="headerlink" title="將 routerConfig 擺入 App"></a>將 routerConfig 擺入 App</h3><p>將剛剛建立的 routerConfig 傳入 useRoutes，並將回傳結果擺入 App</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span>
+  useRoutes
+<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react-router-dom'</span>
+
+<span class="token keyword">const</span> <span class="token literal-property property">App</span><span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 將剛剛建立的 routerConfig 傳入 useRoutes，並將回傳結果擺入 App</span>
+  <span class="token keyword">const</span> route <span class="token operator">=</span> <span class="token function">useRoutes</span><span class="token punctuation">(</span>routerConfig<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">&#123;</span>route<span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
   <p> — Apr 5, 2022</p>
   
 

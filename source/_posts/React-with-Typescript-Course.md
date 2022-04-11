@@ -6,6 +6,19 @@ tags:
 
 Bruce Typescript + React 課程筆記
 
+## Content
+- [Setup](#Setup)
+- [Create Functional Component with TS](#Create-Functional-Component-with-TS)
+- [React 網站 render 過程](#React-網站-render-過程)
+- [Styled-Component with Typescript](#Styled-Component-with-Typescript)
+- [自己建立Hook](#自己建立-Hook)
+- [使用 UseEffect 結合 API Request](#使用-UseEffect-結合-API-Request)
+- [將處理 API 相關的程序自定義成一個 Hook](#將處理-API-相關的程序自定義成一個-Hook)
+- [useRef](#useRef)
+- [useContext](#useContext)
+- [useMemo, useCallback](#useMemo-useCallback)
+- [useRoutes](#useRoutes)
+
 ## Setup
 1. `npx create-react-app my-app --template typescript`
 2. `npm install --save-dev eslint prettier prettier-eslint`
@@ -362,5 +375,162 @@ const App: React.FC = () => {
   }, [])
 
   return <h1 ref={h1Ref}>My page title</h1>
+}
+```
+## useContext
+能夠有效幫助我們減少上層 Component 傳遞給下層 Component 的參數。
+```js
+import React, { createContext, useState, useContext } from 'react'
+
+// 定義初始值
+const defaultValue = {
+  btnVisible: false
+}
+
+// 建立 Context
+const BtnContext = createContext(defaultValue)
+
+// 建立 Provider ( 需要包裹住 Consumer )
+export const BtnProvider: React.FC = ({ children }) => {
+  const [btnVisible, setBtnVisible] = useState(false)
+
+  return (
+    <BtnContext.Provider value={{ btnVisible }}>{children}</BtnContext.Provider>
+  )
+}
+
+// 建立 Consumer
+export const useBtnContext = () => {
+  return useContext(BtnContext)
+}
+```
+
+## useMemo, useCallback
+在 javascript 中比較一個 object 是否相同時，如果我們宣告兩個內容一樣的 object，進行 `===` 比較，會發現他們比較結果是 `false`
+```js
+const obj1 = {}
+const obj2 = {}
+console.log(obj1 === obj2) // false
+```
+如果我們在 React Component 內宣告 function 或是 object 的話，在 React 每次 re-render 的時候都會重新建立一個新的 object / function。所以這時如果我們要判斷 object 是否改變的話，判斷結果就一定會是有改變的。所以這時就能使用 `useMemo` 以及 `useCallback` 來幫我們解決這個問題。
+
+> `useMemo` 主要用來處理 Object，`useCallback` 用來處理 function
+
+```js
+const App: React.FC = () => {
+  const [value, setValue] = useState(false)
+
+  // common object
+  const obj = { name: 'alee' }
+  
+  // common function
+  function fun () {
+    console.log('yo')
+  }
+
+  // wrap into useMemo, useCallback
+  const memoObj = useMemo(() => obj, [])
+  const memoFunc = useCallback(fun, [])
+
+  // this will execute when re-render
+  useEffect(() => {
+    console.log('obj in effect')
+  }, [obj])
+
+  // this won't execute when re-render
+  useEffect(() => {
+    console.log('memoObj in effect')
+  }, [memoObj])
+
+  // this will execute when re-render
+  useEffect(() => {
+    console.log('fun in effect')
+  }, [fun])
+
+  // this won't execute when re-render
+  useEffect(() => {
+    console.log('memoFunc in effect')
+  }, [memoFunc])
+
+  return (
+    <>
+      <h1>Testing</h1>
+      <button onClick={() => setValue(!value)}>Click me to re-render</button>
+    </>
+  )
+}
+```
+
+## useRoutes
+`useRoutes` 是由 react-router-dom 所提供的一個 Hook，可以幫助我們建立 router config。底下範例介紹如何使用 react-router-dom 所提供的 `useRoutes`, `Outlet`, `RouteObject`, `useParams`, `Link`。
+
+### 建立各個 Page 的 Component:  
+Outlet 指定子 Component 出現在父 Component 的位置，這邊範例中的子 Component 是 <Item/>
+```js
+import {
+  Outlet,
+  useParams,
+  Link
+} from 'react-router-dom'
+
+const Home: React.FC = () => {
+  return <h1>Home</h1>
+}
+
+const About: React.FC = () => {
+  return (
+    <h1>
+      About <Link to="/about/1">Go to id 1</Link>
+      {/* Outlet 指定子 Component 出現在父 Component 的位置，這邊範例中的子 Component 是 <Item/> */}
+      <Outlet />
+    </h1>
+  )
+}
+
+const Item: React.FC = () => {
+  const { id } = useParams()
+  return <p>Item: {id} in about page</p>
+}
+
+const Nomatch: React.FC = () => {
+  return <h1>No match</h1>
+}
+```
+
+### 建立 router config:  
+( useRoutes 會接收 RouteObject[] 的型態，所以我們從 react-router-dom 匯入 RouteObject )
+```js
+import {
+  RouteObject,
+} from 'react-router-dom'
+
+// useRoutes 會接收 RouteObject[] 的型態，所以我們從 react-router-dom 匯入 RouteObject
+const routerConfig: RouteObject[] = [
+  {
+    path: '/',
+    element: <Home />
+  },
+  {
+    path: '/about',
+    element: <About />,
+    children: [{ path: ':id', element: <Item /> }]
+  },
+  {
+    path: '*',
+    element: <Nomatch />
+  }
+]
+```
+### 將 routerConfig 擺入 App
+將剛剛建立的 routerConfig 傳入 useRoutes，並將回傳結果擺入 App
+```js
+import {
+  useRoutes
+} from 'react-router-dom'
+
+const App: React.FC = () => {
+  // 將剛剛建立的 routerConfig 傳入 useRoutes，並將回傳結果擺入 App
+  const route = useRoutes(routerConfig)
+  return <>{route}</>
 }
 ```

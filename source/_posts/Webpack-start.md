@@ -134,6 +134,19 @@ module.exports = {
 }
 ```
 
+> 需要使用到 async await 時
+
++ `npm install -D @babel/plugin-transform-runtime`
++ 在 `.babelrc.js` 裡面增加:
+```js
+module.exports = {
+  plugins: ["@babel/plugin-transform-runtime"],
+};
+```
+
+Ref: [https://blog.51cto.com/u_15252994/2853975](https://blog.51cto.com/u_15252994/2853975)
+
+
 ### Asset Modules
 Asset Module 能夠使我們不用特別設定所有的 asset files' loader，就能夠使用多種檔案類型。像是我會使用到 gif 檔的話就可以在 `test` 中設定 `.gif`。
 
@@ -177,6 +190,25 @@ module.exports {
     }),
   ],
 }
+```
+> 如果 html 有使用到 images 等的 resource，可以下載 html-loader
+
+1. `npm install --save-dev html-loader`
+2. webpack.config.js:
+```js
+module: {
+    rules: [
+      {
+         test: /\.(html)$/,
+         use: ['html-loader']
+      }
+    ]
+},
+plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })
+  ]
 ```
 
 ### MiniCssExtractPlugin

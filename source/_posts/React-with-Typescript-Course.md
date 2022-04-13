@@ -18,6 +18,7 @@ Bruce Typescript + React 課程筆記
 - [useContext](#useContext)
 - [useMemo, useCallback](#useMemo-useCallback)
 - [useRoutes](#useRoutes)
+- [redux 介紹](#redux-介紹)
 
 ## Setup
 1. `npx create-react-app my-app --template typescript`
@@ -534,3 +535,15 @@ const App: React.FC = () => {
   return <>{route}</>
 }
 ```
+
+## redux 介紹
+- action: 是什麼動作，帶了什麼資料
+```js
+{
+  type: 'deposit' // 什麼動作
+  payload: 10 // 附帶的資料
+}
+```
+- reducer: switch case 的 function，負責處理 action 的邏輯
+- dispatch: 派發給 action 給 reducer
+- store: 包含 state 以及 reducer，並在更新 state 後會通知 UI 重新渲染

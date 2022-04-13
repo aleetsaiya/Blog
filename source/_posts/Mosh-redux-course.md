@@ -16,6 +16,18 @@ categories: Front-end
 
 
 ## redux 架構
+- action: 是什麼動作，帶了什麼資料
+```js
+{
+  type: 'deposit' // 什麼動作
+  payload: 10 // 附帶的資料
+}
+```
+- reducer: switch case 的 function，負責處理 action 的邏輯
+- dispatch: 派發給 action 給 reducer
+- store: 包含 state 以及 reducer，並在更新 state 後會通知 UI 重新渲染
+
+### 建立順序: 
 1. 建立 reducer，需要 currentState, action 作為參數，根據不同的 action types 來更新 store 中的 state 並回傳
 2. 建立 store，需要 reducer 作為參數，為主程式接口，負責處理主程式發出的 `dispatch`, `subscribe`, `getState` 等動作
 3. 主程式對 store 進行 `dispatch`, `subscribe`, `getState` 等動作

@@ -221,6 +221,7 @@
 <li><a href="#useContext">useContext</a></li>
 <li><a href="#useMemo-useCallback">useMemo, useCallback</a></li>
 <li><a href="#useRoutes">useRoutes</a></li>
+<li><a href="#redux-%E4%BB%8B%E7%B4%B9">redux 介紹</a></li>
 </ul>
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
 <li><code>npx create-react-app my-app --template typescript</code></li>
@@ -684,6 +685,17 @@ console<span class="token punctuation">.</span><span class="token function">log<
   <span class="token keyword">const</span> route <span class="token operator">=</span> <span class="token function">useRoutes</span><span class="token punctuation">(</span>routerConfig<span class="token punctuation">)</span>
   <span class="token keyword">return</span> <span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">&#123;</span>route<span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="redux-介紹"><a href="#redux-介紹" class="headerlink" title="redux 介紹"></a>redux 介紹</h2><ul>
+<li>action: 是什麼動作，帶了什麼資料<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'deposit'</span> <span class="token comment">// 什麼動作</span>
+  <span class="token literal-property property">payload</span><span class="token operator">:</span> <span class="token number">10</span> <span class="token comment">// 附帶的資料</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>reducer: switch case 的 function，負責處理 action 的邏輯</li>
+<li>dispatch: 派發給 action 給 reducer</li>
+<li>store: 包含 state 以及 reducer，並在更新 state 後會通知 UI 重新渲染</li>
+</ul>
+
   <p> — Apr 5, 2022</p>
   
 

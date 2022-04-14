@@ -321,3 +321,21 @@ body.darkmode {
   }
 
 }
+
+.darkmode input.search-text {
+  background-color: rgba(148, 148, 149, 0.08);
+  color: white;
+}
+
+.darkmode input.search-text:focus {
+  border-color: #0ba484;
+}
+
+#result a:not(.icon) {
+  text-decoration-color: #0ba484;
+  background-image:linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0ba484 50%
+    )
+}

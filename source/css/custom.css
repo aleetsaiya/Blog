@@ -224,15 +224,14 @@ blockquote footer cite:before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(11 164 132 / 70%);
-  border-radius: 5px;
+  background: rgb(128 128 128 / 70%);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-  background: rgb(11 164 132 / 20%);
+  background: rgb(128 128 128 / 20%);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background-color: rgb(11 164 132 / 100%);
+  background-color: rgb(128 128 128 / 100%);
 }
 
 /* Footer */

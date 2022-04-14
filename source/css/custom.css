@@ -169,6 +169,8 @@ img {
   border-radius: 50%;
 }
 
+/* custom */
+/* --------------------- */
 code:not(pre code) {
   background-color: rgb(230, 230, 230);
   border-radius: 5px;
@@ -188,6 +190,11 @@ pre[class*="language-"].line-numbers {
 .darkmode pre[class*="language-"].line-numbers {
   background-color: #292929;
 }
+
+#main-content a{
+  text-decoration-color: transparent
+}
+/* --------------------- */
 
 /* blockquote */
 blockquote {

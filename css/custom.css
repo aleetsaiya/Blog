@@ -180,6 +180,15 @@ body.darkmode code:not(pre code) {
   background-color: rgb(65, 65, 65);
 }
 
+pre[class*="language-"].line-numbers {
+  background-color: #214252;
+  border-radius: .5rem;
+}
+
+.darkmode pre[class*="language-"].line-numbers {
+  background-color: #292929;
+}
+
 /* blockquote */
 blockquote {
   font-family: 'Inter';
@@ -208,14 +217,15 @@ blockquote footer cite:before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(128 128 128 / 70%);
+  background: rgb(11 164 132 / 70%);
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-  background: rgb(128 128 128 / 20%);
+  background: rgb(11 164 132 / 20%);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background-color: rgb(128 128 128 / 100%);
+  background-color: rgb(11 164 132 / 100%);
 }
 
 /* Footer */

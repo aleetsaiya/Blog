@@ -327,10 +327,6 @@ body.darkmode {
   color: white;
 }
 
-.darkmode input.search-text:focus {
-  border-color: #0ba484;
-}
-
 #result a:not(.icon) {
   text-decoration-color: #0ba484;
   background-image:linear-gradient(

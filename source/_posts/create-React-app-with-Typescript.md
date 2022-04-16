@@ -1,5 +1,5 @@
 ---
-title: create React app with Typescript
+title: Use webpack to create react app with Typescript
 date: 2022-04-13 00:24:26
 tags:
 ---
@@ -48,12 +48,13 @@ npm install -D style-loader css-loader html-webpack-plugin mini-css-extract-plug
 ```
 7. 下載 babel 相關套件: 
 ```
-npm install -D babel-loader @babel/core @babel/preset-typescript @babel/preset-env @babel/preset-react
+npm install -D babel-loader @babel/core @babel/preset-typescript @babel/preset-env @babel/preset-react @babel/plugin-transform-runtime
 ```
 8. 建立 `.babelrc`
 ```json
 {
   "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
+  "plugins": ["@babel/plugin-transform-runtime"]
 }
 ```
 9. 建立 `webpack.config.js`

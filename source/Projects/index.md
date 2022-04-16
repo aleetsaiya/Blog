@@ -1,5 +1,5 @@
 ---
-title: Works
+title: Projects
 date: 2022-03-25 23:45:48
 ---
 
@@ -15,7 +15,7 @@ This page stores all the Front-End side projects that I did before.
 ----------------------------------
 
 ### Search Github User
-<img src="https://user-images.githubusercontent.com/67775387/160247438-e96862a9-230f-4f38-abef-74c595b22f96.png" alt="app preview"/>
+<img src="https://user-images.githubusercontent.com/67775387/160247438-e96862a9-230f-4f38-abef-74c595b22f96.png" alt="app preview" width="500"/>
 
 **[Visit app](https://aleetsaiya.github.io/dcard-frontend-hw/)** | **[Visit code](https://github.com/aleetsaiya/dcard-frontend-hw)**
 
@@ -29,7 +29,7 @@ This page stores all the Front-End side projects that I did before.
 ----------------------------------
 
 ### Weather App
-<img alt="Weather App" src="https://user-images.githubusercontent.com/67775387/160565338-296fae20-b455-49ac-8d44-045193d341dc.png">
+<img alt="Weather App" src="https://user-images.githubusercontent.com/67775387/160565338-296fae20-b455-49ac-8d44-045193d341dc.png" width="500">
 
 **[Visit app](https://aleetsaiya.github.io/WeatherApp/)** | **[Visit code](https://github.com/aleetsaiya/WeatherApp)**
 
@@ -42,7 +42,7 @@ This page stores all the Front-End side projects that I did before.
 ----------------------------------
 
 ### 30 Days Vanilla JS Challenge
-<img alt="app preview" src="https://user-images.githubusercontent.com/67775387/160536947-faf17c6a-da35-4f65-a87b-8ab3cac64052.png">
+<img alt="app preview" src="https://user-images.githubusercontent.com/67775387/160536947-faf17c6a-da35-4f65-a87b-8ab3cac64052.png" width="500">
 
 **[Visit app](https://aleetsaiya.github.io/Javascript30/)** | **[Visit code](https://github.com/aleetsaiya/Javascript30)**
 
@@ -52,7 +52,7 @@ This page stores all the Front-End side projects that I did before.
 ----------------------------------
 
 ### Tomatoes Clock
-<img alt="app preview" src="https://user-images.githubusercontent.com/67775387/160384753-e65efcb7-39a9-422a-b922-98844f7e9d86.png">
+<img alt="app preview" src="https://user-images.githubusercontent.com/67775387/160384753-e65efcb7-39a9-422a-b922-98844f7e9d86.png" width="500">
 
 **[Visit app](https://aleetsaiya.github.io/tomatoes-clock/)** | **[Visit code](https://github.com/aleetsaiya/tomatoes-clock)**
 

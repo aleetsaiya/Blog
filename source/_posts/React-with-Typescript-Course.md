@@ -501,7 +501,7 @@ const Nomatch: React.FC = () => {
 ### 建立 router config:  
 ( useRoutes 會接收 RouteObject[] 的型態，所以我們從 react-router-dom 匯入 RouteObject )
 ```js
-import {
+import type {
   RouteObject,
 } from 'react-router-dom'
 
@@ -535,6 +535,12 @@ const App: React.FC = () => {
   return <>{route}</>
 }
 ```
+
+## 新專案要建立 Router 的步驟
+1. 建立好 `pages` folder ( 擺之後的各個 page components )
+2. 寫好 router config ( 在 `src` 資料夾內建立 `routes.tsx` )
+3. 引入 `BrowserRouter`
+4. 在 `App.tsx` 裡面使用 `useRoutes` 初始化路由
 
 ## redux 介紹
 - action: 是什麼動作，帶了什麼資料

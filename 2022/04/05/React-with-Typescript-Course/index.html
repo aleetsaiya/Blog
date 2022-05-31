@@ -653,7 +653,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="建立-router-config"><a href="#建立-router-config" class="headerlink" title="建立 router config:"></a>建立 router config:</h3><p>( useRoutes 會接收 RouteObject[] 的型態，所以我們從 react-router-dom 匯入 RouteObject )</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> type <span class="token punctuation">&#123;</span>
   RouteObject<span class="token punctuation">,</span>
 <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react-router-dom'</span>
 
@@ -684,6 +684,12 @@ console<span class="token punctuation">.</span><span class="token function">log<
   <span class="token keyword">return</span> <span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">&#123;</span>route<span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="新專案要建立-Router-的步驟"><a href="#新專案要建立-Router-的步驟" class="headerlink" title="新專案要建立 Router 的步驟"></a>新專案要建立 Router 的步驟</h2><ol>
+<li>建立好 <code>pages</code> folder ( 擺之後的各個 page components )</li>
+<li>寫好 router config ( 在 <code>src</code> 資料夾內建立 <code>routes.tsx</code> )</li>
+<li>引入 <code>BrowserRouter</code></li>
+<li>在 <code>App.tsx</code> 裡面使用 <code>useRoutes</code> 初始化路由</li>
+</ol>
 <h2 id="redux-介紹"><a href="#redux-介紹" class="headerlink" title="redux 介紹"></a>redux 介紹</h2><ul>
 <li>action: 是什麼動作，帶了什麼資料<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token punctuation">&#123;</span>
   <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'deposit'</span> <span class="token comment">// 什麼動作</span>
